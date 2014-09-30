@@ -1,5 +1,7 @@
 # DribbbleAPI
 
+[![Codeship Status for Calyhre/dribbble_api](https://www.codeship.io/projects/11857a40-2b09-0132-c03d-1ac4495b4327/status)](https://www.codeship.io/projects/38470)
+
 _Dribbble API gem_
 
 ## Installation
