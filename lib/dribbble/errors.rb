@@ -1,6 +1,6 @@
 module Dribbble
   module Error
-    ISSUES_URL = 'https://github.com/Calyhre/dribbble_api/issues/new'
+    ISSUES_URL = 'https://github.com/Calyhre/dribbble/issues/new'
 
     # Standard error we will inherit
     class Standard < StandardError

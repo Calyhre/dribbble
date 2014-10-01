@@ -1,8 +1,8 @@
 # DribbbleAPI
 
-![Codeship Status for Calyhre/dribbble_api](https://www.codeship.io/projects/11857a40-2b09-0132-c03d-1ac4495b4327/status)
+![Codeship Status for Calyhre/dribbble](https://www.codeship.io/projects/11857a40-2b09-0132-c03d-1ac4495b4327/status)
 
-[![Build Status](https://travis-ci.org/Calyhre/dribbble_api.svg?branch=master)](https://travis-ci.org/Calyhre/dribbble_api)
+[![Build Status](https://travis-ci.org/Calyhre/dribbble.svg?branch=master)](https://travis-ci.org/Calyhre/dribbble)
 
 _Dribbble API gem_
 
@@ -15,13 +15,13 @@ _Dribbble API gem_
 ### In a Gemfile
 
 ```ruby
-gem 'dribbble_api'
+gem 'dribbble'
 ```
 
 ### By yourself
 
 ```ruby
-gem install dribbble_api
+gem install dribbble
 ```
 
 ## Usage
@@ -85,8 +85,8 @@ client.create_shot(shot)
 
 Feel free to help me make this gem awesome !
 
-[Contributors](https://github.com/Calyhre/dribbble_api/graphs/contributors) and [CONTRIBUTING](https://github.com/Calyhre/dribbble_api/blob/master/CONTRIBUTING.md)
+[Contributors](https://github.com/Calyhre/dribbble/graphs/contributors) and [CONTRIBUTING](https://github.com/Calyhre/dribbble/blob/master/CONTRIBUTING.md)
 
 ## Licence
 
-Released under the MIT License. See the [LICENSE](https://github.com/Calyhre/dribbble_api/blob/master/LICENSE.md) file for further details.
+Released under the MIT License. See the [LICENSE](https://github.com/Calyhre/dribbble/blob/master/LICENSE.md) file for further details.

@@ -1,14 +1,14 @@
 require File.expand_path('../lib/dribbble/version', __FILE__)
 
 Gem::Specification.new do |s|
-  s.name         = 'dribbble_api'
+  s.name         = 'dribbble'
   s.version      = Dribbble::VERSION
   s.summary      = 'Dribbble API ruby wrapper'
   s.description  = 'Simple gem to make shots and list stuff from Dribbble'
   s.authors      = ['Calyhre']
   s.email        = ['contact@calyh.re']
   s.require_path = 'lib'
-  s.homepage     = 'http://github.com/Calyhre/dribbble_api'
+  s.homepage     = 'http://github.com/Calyhre/dribbble'
   s.license      = 'MIT'
 
   s.files        = `git ls-files`.split("\n")
