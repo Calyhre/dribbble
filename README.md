@@ -83,6 +83,8 @@ client.create_shot(shot)
 
 ## Contributing
 
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/Calyhre/dribbble?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Feel free to help me make this gem awesome !
 
 [Contributors](https://github.com/Calyhre/dribbble/graphs/contributors) and [CONTRIBUTING](https://github.com/Calyhre/dribbble/blob/master/CONTRIBUTING.md)
