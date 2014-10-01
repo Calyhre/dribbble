@@ -1,4 +1,5 @@
 # DribbbleAPI
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/Calyhre/dribbble?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ![Codeship Status for Calyhre/dribbble](https://www.codeship.io/projects/11857a40-2b09-0132-c03d-1ac4495b4327/status)
 
