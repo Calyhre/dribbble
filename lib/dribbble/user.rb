@@ -1,17 +1,14 @@
-module Dribbble
-  class User
-    attr_reader :raw
+require 'dribbble/bucket'
 
-    def initialize(json)
-      @raw = json
+module Dribbble
+  class User < Dribbble::Base
+    def self.find(token, id = nil)
+      @token = token
+      get_user(id)
     end
 
-    def method_missing(method, *args, &block)
-      if @raw.key? method.to_s
-        @raw[method.to_s]
-      else
-        super
-      end
+    def buckets
+      Dribbble::Bucket.batch_new token, get("/users/#{id}/buckets")
     end
   end
 end

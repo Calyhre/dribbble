@@ -11,15 +11,22 @@ module DribbbleAPI
     end
   end
 
-  class Success < Base
+  class UserSuccess < Base
     get '/*' do
-      json_response 200, 'success.json'
+      json_response 200, 'user_success.json'
+    end
+  end
+
+  class BucketsSuccess < Base
+    get '/*' do
+      json_response 200, 'buckets_success.json'
     end
   end
 
   class Created < Base
     post '/*' do
-      json_response 202, 'success.json'
+      status 202
+      {}.to_json
     end
   end
 

@@ -18,20 +18,20 @@ describe Dribbble::Client do
 
       it 'raise Dribbble::Error::Unauthorized' do
         expect do
-          subject.user
+          subject.get_user
         end.to raise_error(Dribbble::Error::Unauthorized)
       end
     end
 
     describe 'with a valid token' do
       subject do
-        stub_dribbble_with DribbbleAPI::Success
+        stub_dribbble_with DribbbleAPI::UserSuccess
         Dribbble::Client.new(token: 'valid_token')
       end
 
       it 'return a Dribbble::User' do
-        expect(subject.user).to be_a Dribbble::User
-        expect(subject.user.name).to be_a String
+        expect(subject.get_user).to be_a Dribbble::User
+        expect(subject.get_user.name).to be_a String
       end
     end
   end
