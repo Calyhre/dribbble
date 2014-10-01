@@ -1,6 +1,7 @@
 # DribbbleAPI
 
 ![Codeship Status for Calyhre/dribbble_api](https://www.codeship.io/projects/11857a40-2b09-0132-c03d-1ac4495b4327/status)
+
 [![Build Status](https://travis-ci.org/Calyhre/dribbble_api.svg?branch=master)](https://travis-ci.org/Calyhre/dribbble_api)
 
 _Dribbble API gem_
