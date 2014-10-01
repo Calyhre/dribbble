@@ -36,8 +36,32 @@ client = Dribbble::Client.new token: '0123456789abcdef'
 You can get the current user logged in by calling `client.user`
 
 ```ruby
-client.user
+client.get_user
 #=> #<Dribbble::User ...>
+```
+
+Or you can get a specific user by knowing his ID
+
+```ruby
+user = client.get_user(1)
+#=> #<Dribbble::User id=1 ...>
+```
+
+You can access users attributes like this :
+
+```ruby
+user.name
+#=> "Charley D."
+
+user.username
+#=> "Calyhre"
+```
+
+A user also have buckets :
+
+```ruby
+user.buckets
+#=> [#<Dribbble::Bucket ...>, #<Dribbble::Bucket ...>]
 ```
 
 ### Shots
