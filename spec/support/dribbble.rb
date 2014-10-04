@@ -23,6 +23,12 @@ module DribbbleAPI
     end
   end
 
+  class ShotsSuccess < Base
+    get '/*' do
+      json_response 200, 'shots_success.json'
+    end
+  end
+
   class Created < Base
     post '/*' do
       status 202
