@@ -26,4 +26,16 @@ describe Dribbble::User do
       expect(subject.first).to be_a Dribbble::Bucket
     end
   end
+
+  describe "#shots" do
+    subject do
+      stub_dribbble_with DribbbleAPI::ShotsSuccess
+      @user.shots
+    end
+
+    it 'responds with buckets' do
+      expect(subject.size).to eq 2
+      expect(subject.first).to be_a Dribbble::Shot
+    end
+  end
 end
