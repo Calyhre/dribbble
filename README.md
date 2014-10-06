@@ -65,6 +65,13 @@ user.buckets
 #=> [#<Dribbble::Bucket ...>, #<Dribbble::Bucket ...>]
 ```
 
+... And shots :
+
+```ruby
+user.shots
+#=> [#<Dribbble::Shot ...>, #<Dribbble::Shot ...>]
+```
+
 ### Shots
 
 You can create a shot by calling `client.create_shot`
@@ -79,6 +86,21 @@ shot = {
 
 client.create_shot(shot)
 #=> True
+```
+
+### Pagination & parameters
+
+All requests are paginated, defaults params are :
+
+| Param   | Default |
+|---------|--------:|
+|page     |        1|
+|per_page |      100|
+
+You override them or adding some by passing a `Hash` to every request :
+
+```ruby
+client.user page: 2, custom_param: 'My param'
 ```
 
 ## Contributing
