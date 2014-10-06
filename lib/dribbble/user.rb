@@ -8,12 +8,12 @@ module Dribbble
       get_user(id)
     end
 
-    def buckets
-      Dribbble::Bucket.batch_new token, get("/users/#{id}/buckets")
+    def buckets(attrs = {})
+      Dribbble::Bucket.batch_new token, get("/users/#{id}/buckets", attrs)
     end
 
-    def shots(page: 1, per_page: 100)
-      Dribbble::Shot.batch_new token, get("/users/#{id}/shots?page=#{page}&per_page=#{per_page}")
+    def shots(attrs = {})
+      Dribbble::Shot.batch_new token, get("/users/#{id}/shots", attrs)
     end
   end
 end
