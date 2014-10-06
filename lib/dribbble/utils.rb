@@ -1,7 +1,15 @@
+require 'uri'
+
 module Dribbble
   module Utils
-    def full_url(path)
-      "#{Dribbble::API_URI}#{path}"
+    DEFAULT_ATTRIBUTES = {
+      page: 1,
+      per_page: 100
+    }
+
+    def full_url(path, attrs = {})
+      query = URI.encode_www_form DEFAULT_ATTRIBUTES.merge(attrs)
+      "#{Dribbble::API_URI}#{path}?#{query}"
     end
 
     def headers
@@ -12,16 +20,16 @@ module Dribbble
       end
     end
 
-    def get(path)
-      RestClient.get full_url(path), headers
+    def get(path, attrs = {})
+      RestClient.get full_url(path, attrs), headers
     rescue RestClient::Unauthorized => e
       raise Dribbble::Error::Unauthorized, e
     end
 
-    def post(path)
+    def post(path, attrs = {})
       payload = {}
       yield payload
-      RestClient.post full_url(path), payload, headers
+      RestClient.post full_url(path, attrs), payload, headers
     rescue RestClient::Unauthorized => e
       raise Dribbble::Error::Unauthorized, e
     rescue RestClient::UnprocessableEntity => e
