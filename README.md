@@ -1,10 +1,9 @@
-# DribbbleAPI [![Gem Version](https://badge.fury.io/rb/dribbble.svg)](http://rubygems.org/gems/dribbble)
+# DribbbleAPI
 
-![Codeship Status for Calyhre/dribbble](https://www.codeship.io/projects/11857a40-2b09-0132-c03d-1ac4495b4327/status)
-
+[![Gem Version](https://badge.fury.io/rb/dribbble.svg)](http://rubygems.org/gems/dribbble)
 [![Build Status](https://travis-ci.org/Calyhre/dribbble.svg?branch=master)](https://travis-ci.org/Calyhre/dribbble)
 
-_Dribbble API gem_
+_Dribbble API wrapper gem_
 
 ## Installation
 
