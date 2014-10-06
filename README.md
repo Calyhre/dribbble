@@ -1,4 +1,4 @@
-# DribbbleAPI
+# DribbbleAPI [![Gem Version](https://badge.fury.io/rb/dribbble.svg)](http://rubygems.org/gems/dribbble)
 
 ![Codeship Status for Calyhre/dribbble](https://www.codeship.io/projects/11857a40-2b09-0132-c03d-1ac4495b4327/status)
 
