@@ -20,9 +20,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rake', '~> 10.3'
   s.add_development_dependency 'rspec', '~> 2.14'
   s.add_development_dependency 'guard-rspec', '~> 4.3'
-  s.add_development_dependency 'guard-spork', '~> 1.5'
   s.add_development_dependency 'sinatra', '~> 1.4'
   s.add_development_dependency 'webmock', '~> 1.17'
-  s.add_development_dependency 'factory_girl', '~> 4.0'
-  s.add_development_dependency 'faker', '~> 1.3'
 end
