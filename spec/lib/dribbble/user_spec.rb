@@ -27,6 +27,42 @@ describe Dribbble::User do
     end
   end
 
+  describe "#followers" do
+    subject do
+      stub_dribbble_with DribbbleAPI::FollowersSuccess
+      @user.followers
+    end
+
+    it 'responds with users' do
+      expect(subject.size).to eq 1
+      expect(subject.first).to be_a Dribbble::User
+    end
+  end
+
+  describe "#likes" do
+    subject do
+      stub_dribbble_with DribbbleAPI::LikesSuccess
+      @user.likes
+    end
+
+    it 'responds with shots' do
+      expect(subject.size).to eq 1
+      expect(subject.first).to be_a Dribbble::Shot
+    end
+  end
+
+  describe "#projects" do
+    subject do
+      stub_dribbble_with DribbbleAPI::ProjectsSuccess
+      @user.projects
+    end
+
+    it 'responds with projects' do
+      expect(subject.size).to eq 1
+      expect(subject.first).to be_a Dribbble::Project
+    end
+  end
+
   describe "#shots" do
     subject do
       stub_dribbble_with DribbbleAPI::ShotsSuccess
@@ -36,6 +72,18 @@ describe Dribbble::User do
     it 'responds with buckets' do
       expect(subject.size).to eq 2
       expect(subject.first).to be_a Dribbble::Shot
+    end
+  end
+
+  describe "#teams" do
+    subject do
+      stub_dribbble_with DribbbleAPI::TeamsSuccess
+      @user.teams
+    end
+
+    it 'responds with teams' do
+      expect(subject.size).to eq 1
+      expect(subject.first).to be_a Dribbble::Team
     end
   end
 end

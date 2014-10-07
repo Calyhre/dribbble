@@ -23,9 +23,33 @@ module DribbbleAPI
     end
   end
 
+  class FollowersSuccess < Base
+    get '/*' do
+      json_response 200, 'followers_success.json'
+    end
+  end
+
+  class LikesSuccess < Base
+    get '/*' do
+      json_response 200, 'likes_success.json'
+    end
+  end
+
+  class ProjectsSuccess < Base
+    get '/*' do
+      json_response 200, 'projects_success.json'
+    end
+  end
+
   class ShotsSuccess < Base
     get '/*' do
       json_response 200, 'shots_success.json'
+    end
+  end
+
+  class TeamsSuccess < Base
+    get '/*' do
+      json_response 200, 'teams_success.json'
     end
   end
 
