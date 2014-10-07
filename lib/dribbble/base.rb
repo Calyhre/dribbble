@@ -23,6 +23,18 @@ module Dribbble
       end
     end
 
+    def get_bucket(id)
+      Dribbble::Bucket.new @token, get("/buckets/#{id}")
+    end
+
+    def get_project(id)
+      Dribbble::Project.new @token, get("/projects/#{id}")
+    end
+
+    def get_shot(id)
+      Dribbble::Shot.new @token, get("/shots/#{id}")
+    end
+
     def get_user(id = nil)
       if id
         Dribbble::User.new @token, get("/users/#{id}")

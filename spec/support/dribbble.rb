@@ -11,9 +11,21 @@ module DribbbleAPI
     end
   end
 
+  class CurrentUserSuccess < Base
+    get '/*' do
+      json_response 200, 'current_user_success.json'
+    end
+  end
+
   class UserSuccess < Base
     get '/*' do
       json_response 200, 'user_success.json'
+    end
+  end
+
+  class BucketSuccess < Base
+    get '/*' do
+      json_response 200, 'bucket_success.json'
     end
   end
 
@@ -35,9 +47,21 @@ module DribbbleAPI
     end
   end
 
+  class ProjectSuccess < Base
+    get '/*' do
+      json_response 200, 'project_success.json'
+    end
+  end
+
   class ProjectsSuccess < Base
     get '/*' do
       json_response 200, 'projects_success.json'
+    end
+  end
+
+  class ShotSuccess < Base
+    get '/*' do
+      json_response 200, 'shot_success.json'
     end
   end
 
