@@ -16,6 +16,12 @@ module Dribbble
       end
     end
 
+
+    def self.find(token, id)
+      @token = token
+      @client = Dribbble::Client.new token: @token
+    end
+
     def self.batch_new(token, json)
       json = JSON.parse json unless json.is_a? Hash
       json.map do |obj|

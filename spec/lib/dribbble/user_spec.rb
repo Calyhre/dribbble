@@ -15,6 +15,18 @@ describe Dribbble::User do
     end
   end
 
+  describe 'on #find' do
+    subject do
+      stub_dribbble_with DribbbleAPI::UserSuccess
+      Dribbble::User.find 'valid_token', 483195
+    end
+
+    it 'return a user' do
+      expect(subject).to be_a Dribbble::User
+      expect(subject.id).to eq(483195)
+    end
+  end
+
   describe 'on #buckets' do
     subject do
       stub_dribbble_with DribbbleAPI::BucketsSuccess

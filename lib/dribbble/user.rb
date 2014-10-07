@@ -5,9 +5,9 @@ require 'dribbble/team'
 
 module Dribbble
   class User < Dribbble::Base
-    def self.find(token, id = nil)
-      @token = token
-      get_user(id)
+    def self.find(token, id)
+      super
+      @client.get_user(id)
     end
 
     def buckets(attrs = {})

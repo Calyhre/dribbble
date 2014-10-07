@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RAW_BUCKET = data_from_json('buckets_success.json').first
+RAW_BUCKET = data_from_json 'bucket_success.json'
 
 describe Dribbble::Bucket do
   before :all do
@@ -12,6 +12,18 @@ describe Dribbble::Bucket do
       it "respond to #{field}" do
         expect(@bucket.send field).to eq(value)
       end
+    end
+  end
+
+  describe 'on #find' do
+    subject do
+      stub_dribbble_with DribbbleAPI::BucketSuccess
+      Dribbble::Bucket.find 'valid_token', 2754
+    end
+
+    it 'return a bucket' do
+      expect(subject).to be_a Dribbble::Bucket
+      expect(subject.id).to eq(2754)
     end
   end
 
