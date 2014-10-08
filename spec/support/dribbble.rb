@@ -45,6 +45,12 @@ module DribbbleAPI
 
   class Created < Base
     def status_code
+      201
+    end
+  end
+
+  class Accepted < Base
+    def status_code
       202
     end
   end
@@ -86,6 +92,9 @@ module DribbbleAPI
   end
 
   class ShotSuccess < Found
+  end
+
+  class ShotAccepted < Accepted
   end
 
   class ShotsSuccess < Found

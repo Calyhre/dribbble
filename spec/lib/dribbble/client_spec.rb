@@ -38,7 +38,7 @@ describe Dribbble::Client do
 
   describe 'on #create_shot' do
     before :all do
-      stub_dribbble_with DribbbleAPI::Created
+      stub_dribbble_with DribbbleAPI::ShotAccepted
       @shot = {
         title: 'Shot title',
         desciption: 'Shot description',
