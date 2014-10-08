@@ -26,4 +26,16 @@ describe Dribbble::Shot do
       expect(subject.id).to eq(3)
     end
   end
+
+  describe 'on #shots' do
+    subject do
+      stub_dribbble_with DribbbleAPI::ShotsSuccess
+      @project.shots
+    end
+
+    it 'responds with shots' do
+      expect(subject.size).to eq 2
+      expect(subject.first).to be_a Dribbble::Shot
+    end
+  end
 end
