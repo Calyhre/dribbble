@@ -22,5 +22,9 @@ module Dribbble
     def comments(attrs = {})
       Dribbble::Comment.batch_new token, get("/shots/#{id}/comments", attrs)
     end
+
+    def likes(attrs = {})
+      Dribbble::User.batch_new token, get("/shots/#{id}/likes", attrs), 'user'
+    end
   end
 end

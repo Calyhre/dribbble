@@ -103,6 +103,9 @@ module DribbbleAPI
   class ShotAccepted < Accepted
   end
 
+  class ShotLikesSuccess < Accepted
+  end
+
   class ShotsSuccess < Found
   end
 

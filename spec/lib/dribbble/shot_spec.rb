@@ -48,6 +48,17 @@ describe Dribbble::Shot do
     end
   end
 
+  describe 'on #likes' do
+    subject do
+      stub_dribbble_with DribbbleAPI::ShotLikesSuccess
+      @shot.likes
+    end
+
+    it 'return a user' do
+      expect(subject.first).to be_a Dribbble::User
+    end
+  end
+
   describe 'on #find' do
     subject do
       stub_dribbble_with DribbbleAPI::ShotSuccess
