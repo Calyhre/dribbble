@@ -4,7 +4,7 @@ RAW_SHOT = data_from_json 'shot_success.json'
 
 describe Dribbble::Shot do
   before :all do
-    @shot = Dribbble::Bucket.new 'valid_token', RAW_SHOT
+    @shot = Dribbble::Shot.new 'valid_token', RAW_SHOT
   end
 
   describe 'after initialization' do
@@ -12,6 +12,17 @@ describe Dribbble::Shot do
       it "respond to #{field}" do
         expect(@shot.send field).to eq(value)
       end
+    end
+  end
+
+  describe 'on #attachments' do
+    subject do
+      stub_dribbble_with DribbbleAPI::AttachmentsSuccess
+      @shot.attachments
+    end
+
+    it 'return a shot' do
+      expect(subject.first).to be_a Dribbble::Attachment
     end
   end
 

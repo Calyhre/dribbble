@@ -67,6 +67,9 @@ module DribbbleAPI
     end
   end
 
+  class AttachmentsSuccess < Found
+  end
+
   class CurrentUserSuccess < Found
   end
 
