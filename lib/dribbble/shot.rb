@@ -1,5 +1,6 @@
 require 'dribbble/utils/findable'
 require 'dribbble/attachment'
+require 'dribbble/comment'
 
 module Dribbble
   class Shot < Dribbble::Base
@@ -16,6 +17,10 @@ module Dribbble
 
     def buckets(attrs = {})
       Dribbble::Bucket.batch_new token, get("/shots/#{id}/buckets", attrs)
+    end
+
+    def comments(attrs = {})
+      Dribbble::Comment.batch_new token, get("/shots/#{id}/comments", attrs)
     end
   end
 end

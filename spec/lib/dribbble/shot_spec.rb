@@ -37,6 +37,17 @@ describe Dribbble::Shot do
     end
   end
 
+  describe 'on #comments' do
+    subject do
+      stub_dribbble_with DribbbleAPI::CommentsSuccess
+      @shot.comments
+    end
+
+    it 'return a shot' do
+      expect(subject.first).to be_a Dribbble::Comment
+    end
+  end
+
   describe 'on #find' do
     subject do
       stub_dribbble_with DribbbleAPI::ShotSuccess
