@@ -54,6 +54,23 @@ describe Dribbble::Client do
 
     it 'create the shot' do
       expect(subject.code).to eq(202)
+
+  describe 'on #create_bucket' do
+    before :all do
+      stub_dribbble_with DribbbleAPI::BucketCreated
+      @bucket = {
+        name: 'Bucket title',
+        desciption: 'Bucket description'
+      }
+      @client = Dribbble::Client.new(token: 'valid_token')
+    end
+
+    subject do
+      @client.create_bucket(@bucket)
+    end
+
+    it 'create the shot' do
+      expect(subject).to be_a Dribbble::Bucket
     end
   end
 end

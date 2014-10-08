@@ -19,6 +19,13 @@ module Dribbble
       post '/shots' do |payload|
         fields.each { |f| payload[f] = attrs[f] }
       end
+
+    def create_bucket(attrs = {})
+      fields = %i(name description)
+      res = post '/buckets' do |payload|
+        fields.each { |f| payload[f] = attrs[f] }
+      end
+      Dribbble::Bucket.new @token, res
     end
   end
 end

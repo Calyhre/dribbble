@@ -64,10 +64,10 @@ module DribbbleAPI
   class CurrentUserSuccess < Found
   end
 
-  class UserSuccess < Found
+  class BucketSuccess < Found
   end
 
-  class BucketSuccess < Found
+  class BucketCreated < Created
   end
 
   class BucketsSuccess < Found
@@ -92,5 +92,8 @@ module DribbbleAPI
   end
 
   class TeamsSuccess < Found
+  end
+
+  class UserSuccess < Found
   end
 end
