@@ -21,19 +21,28 @@ module Dribbble
     end
 
     def get(path, attrs = {})
-      RestClient.get full_url(path, attrs), headers
+      res = RestClient.get full_url(path, attrs), headers
+      res.force_encoding('UTF-8')
     rescue RestClient::Unauthorized => e
       raise Dribbble::Error::Unauthorized, e
     end
 
     def post(path, attrs = {})
       payload = {}
-      yield payload
-      RestClient.post full_url(path, attrs), payload, headers
+      yield payload if block_given?
+      res = RestClient.post full_url(path, attrs), payload, headers
+      res.force_encoding('UTF-8')
     rescue RestClient::Unauthorized => e
       raise Dribbble::Error::Unauthorized, e
     rescue RestClient::UnprocessableEntity => e
       raise Dribbble::Error::Unprocessable, e
+    end
+
+    def delete(path, attrs = {})
+      res = RestClient.delete full_url(path, attrs), headers
+      res.force_encoding('UTF-8')
+    rescue RestClient::Unauthorized => e
+      raise Dribbble::Error::Unauthorized, e
     end
   end
 end
