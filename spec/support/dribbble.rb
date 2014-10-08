@@ -1,98 +1,96 @@
 require 'sinatra/base'
 
+class String
+  def underscore
+    self.gsub(/::/, '/').
+    gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').
+    gsub(/([a-z\d])([A-Z])/,'\1_\2').
+    tr("-", "_").
+    downcase
+  end
+end
+
 module DribbbleAPI
   class Base < Sinatra::Base
+    get '/*' do
+      json_response
+    end
+
+    post '/*' do
+      json_response
+    end
+
     protected
 
-    def json_response(response_code, file_name)
+    def json_file_name
+      @json_file_name ||= self.class.name.split('::').last.underscore
+    end
+
+    def json_response
       content_type :json
-      status response_code
-      File.open(File.dirname(__FILE__) + '/fixtures/' + file_name, 'rb').read
+      status status_code
+      file_name = "#{File.dirname(__FILE__)}/fixtures/#{json_file_name}.json"
+
+      return {}.to_json unless File.exists? file_name
+
+      File.open(file_name, 'rb')
     end
   end
 
-  class CurrentUserSuccess < Base
-    get '/*' do
-      json_response 200, 'current_user_success.json'
-    end
-  end
-
-  class UserSuccess < Base
-    get '/*' do
-      json_response 200, 'user_success.json'
-    end
-  end
-
-  class BucketSuccess < Base
-    get '/*' do
-      json_response 200, 'bucket_success.json'
-    end
-  end
-
-  class BucketsSuccess < Base
-    get '/*' do
-      json_response 200, 'buckets_success.json'
-    end
-  end
-
-  class FollowersSuccess < Base
-    get '/*' do
-      json_response 200, 'followers_success.json'
-    end
-  end
-
-  class LikesSuccess < Base
-    get '/*' do
-      json_response 200, 'likes_success.json'
-    end
-  end
-
-  class ProjectSuccess < Base
-    get '/*' do
-      json_response 200, 'project_success.json'
-    end
-  end
-
-  class ProjectsSuccess < Base
-    get '/*' do
-      json_response 200, 'projects_success.json'
-    end
-  end
-
-  class ShotSuccess < Base
-    get '/*' do
-      json_response 200, 'shot_success.json'
-    end
-  end
-
-  class ShotsSuccess < Base
-    get '/*' do
-      json_response 200, 'shots_success.json'
-    end
-  end
-
-  class TeamsSuccess < Base
-    get '/*' do
-      json_response 200, 'teams_success.json'
+  class Found < Base
+    def status_code
+      200
     end
   end
 
   class Created < Base
-    post '/*' do
-      status 202
-      {}.to_json
+    def status_code
+      202
     end
   end
 
   class NotFound < Base
-    get '/*' do
-      json_response 404, 'not_found.json'
+    def status_code
+      404
     end
   end
 
   class Unauthorized < Base
-    get '/*' do
-      json_response 401, 'unauthorized.json'
+    def status_code
+      401
     end
+  end
+
+  class CurrentUserSuccess < Found
+  end
+
+  class UserSuccess < Found
+  end
+
+  class BucketSuccess < Found
+  end
+
+  class BucketsSuccess < Found
+  end
+
+  class FollowersSuccess < Found
+  end
+
+  class LikesSuccess < Found
+  end
+
+  class ProjectSuccess < Found
+  end
+
+  class ProjectsSuccess < Found
+  end
+
+  class ShotSuccess < Found
+  end
+
+  class ShotsSuccess < Found
+  end
+
+  class TeamsSuccess < Found
   end
 end
