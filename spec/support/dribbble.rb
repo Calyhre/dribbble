@@ -35,7 +35,7 @@ module DribbbleAPI
       status status_code
       file_name = "#{File.dirname(__FILE__)}/fixtures/#{json_file_name}.json"
 
-      return {}.to_json unless File.exists? file_name
+      return {}.to_json unless File.exist? file_name
 
       File.open(file_name, 'rb')
     end
