@@ -16,9 +16,12 @@ module Dribbble
 
     def create_shot(attrs = {})
       fields = %i(title image description tags team_id rebound_source_id)
-      post '/shots' do |payload|
+      res = post '/shots' do |payload|
         fields.each { |f| payload[f] = attrs[f] }
       end
+      return true if res.code == 202
+      return false
+    end
 
     def create_bucket(attrs = {})
       fields = %i(name description)

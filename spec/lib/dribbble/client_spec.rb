@@ -53,7 +53,9 @@ describe Dribbble::Client do
     end
 
     it 'create the shot' do
-      expect(subject.code).to eq(202)
+      expect(subject).to be_truthy
+    end
+  end
 
   describe 'on #create_bucket' do
     before :all do
