@@ -18,12 +18,12 @@ describe Dribbble::User do
   describe 'on #find' do
     subject do
       stub_dribbble_with DribbbleAPI::UserSuccess
-      Dribbble::User.find 'valid_token', 483195
+      Dribbble::User.find 'valid_token', 483_195
     end
 
     it 'return a user' do
       expect(subject).to be_a Dribbble::User
-      expect(subject.id).to eq(483195)
+      expect(subject.id).to eq(483_195)
     end
   end
 
@@ -39,7 +39,7 @@ describe Dribbble::User do
     end
   end
 
-  describe "#followers" do
+  describe '#followers' do
     subject do
       stub_dribbble_with DribbbleAPI::FollowersSuccess
       @user.followers
@@ -51,7 +51,7 @@ describe Dribbble::User do
     end
   end
 
-  describe "#likes" do
+  describe '#likes' do
     subject do
       stub_dribbble_with DribbbleAPI::LikesSuccess
       @user.likes
@@ -63,7 +63,7 @@ describe Dribbble::User do
     end
   end
 
-  describe "#projects" do
+  describe '#projects' do
     subject do
       stub_dribbble_with DribbbleAPI::ProjectsSuccess
       @user.projects
@@ -75,7 +75,7 @@ describe Dribbble::User do
     end
   end
 
-  describe "#shots" do
+  describe '#shots' do
     subject do
       stub_dribbble_with DribbbleAPI::ShotsSuccess
       @user.shots
@@ -87,7 +87,7 @@ describe Dribbble::User do
     end
   end
 
-  describe "#teams" do
+  describe '#teams' do
     subject do
       stub_dribbble_with DribbbleAPI::TeamsSuccess
       @user.teams

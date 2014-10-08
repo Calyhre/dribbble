@@ -18,12 +18,12 @@ describe Dribbble::Shot do
   describe 'on #find' do
     subject do
       stub_dribbble_with DribbbleAPI::ShotSuccess
-      Dribbble::Shot.find 'valid_token', 471756
+      Dribbble::Shot.find 'valid_token', 471_756
     end
 
     it 'return a shot' do
       expect(subject).to be_a Dribbble::Shot
-      expect(subject.id).to eq(471756)
+      expect(subject.id).to eq(471_756)
     end
   end
 end

@@ -10,5 +10,6 @@ def stub_dribbble_with(response_class)
 end
 
 def data_from_json(json_name)
-  JSON.parse File.open(File.dirname(__FILE__) + "/support/fixtures/#{json_name}", 'rb').read
+  file_name = "#{File.dirname(__FILE__)}/support/fixtures/#{json_name}"
+  JSON.parse File.open(file_name, 'rb').read
 end

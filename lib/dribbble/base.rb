@@ -16,8 +16,7 @@ module Dribbble
       end
     end
 
-
-    def self.find(token, id)
+    def self.find(token, _id)
       @token = token
       @client = Dribbble::Client.new token: @token
     end

@@ -58,12 +58,12 @@ describe Dribbble::Client do
   describe 'on #get_shot' do
     subject do
       stub_dribbble_with DribbbleAPI::ShotSuccess
-      @base.get_shot 471756
+      @base.get_shot 471_756
     end
 
     it 'return a shot' do
       expect(subject).to be_a Dribbble::Shot
-      expect(subject.id).to eq(471756)
+      expect(subject.id).to eq(471_756)
     end
   end
 
@@ -76,19 +76,19 @@ describe Dribbble::Client do
 
       it 'return current user' do
         expect(subject).to be_a Dribbble::User
-        expect(subject.id).to eq(8008135)
+        expect(subject.id).to eq(8_008_135)
       end
     end
 
     describe 'with id' do
       subject do
         stub_dribbble_with DribbbleAPI::UserSuccess
-        @base.get_user 483195
+        @base.get_user 483_195
       end
 
       it 'return current user' do
         expect(subject).to be_a Dribbble::User
-        expect(subject.id).to eq(483195)
+        expect(subject.id).to eq(483_195)
       end
     end
   end
