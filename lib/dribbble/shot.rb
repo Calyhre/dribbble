@@ -1,8 +1,7 @@
+require 'dribbble/utils/findable'
+
 module Dribbble
   class Shot < Dribbble::Base
-    def self.find(token, id)
-      super
-      @client.get_shot(id)
-    end
+    extend Dribbble::Utils::Findable
   end
 end

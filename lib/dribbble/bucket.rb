@@ -1,9 +1,8 @@
+require 'dribbble/utils/findable'
+
 module Dribbble
   class Bucket < Dribbble::Base
-    def self.find(token, id)
-      super
-      @client.get_bucket(id)
-    end
+    extend Dribbble::Utils::Findable
 
     def shots(attrs = {})
       Dribbble::Shot.batch_new token, get("/bucket/#{id}/shots", attrs)

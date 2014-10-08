@@ -1,3 +1,4 @@
+require 'dribbble/utils/findable'
 require 'dribbble/bucket'
 require 'dribbble/project'
 require 'dribbble/shot'
@@ -5,10 +6,7 @@ require 'dribbble/team'
 
 module Dribbble
   class User < Dribbble::Base
-    def self.find(token, id)
-      super
-      @client.get_user(id)
-    end
+    extend Dribbble::Utils::Findable
 
     def buckets(attrs = {})
       Dribbble::Bucket.batch_new token, get("/users/#{id}/buckets", attrs)
