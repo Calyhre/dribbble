@@ -19,8 +19,7 @@ module Dribbble
       res = post '/shots' do |payload|
         fields.each { |f| payload[f] = attrs[f] }
       end
-      return true if res.code == 202
-      return false
+      res.code == 202 ? true : false
     end
 
     def create_bucket(attrs = {})

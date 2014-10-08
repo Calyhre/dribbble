@@ -59,6 +59,52 @@ describe Dribbble::Shot do
     end
   end
 
+  describe 'on #like?' do
+    describe 'on a not liked shot' do
+      subject do
+        stub_dribbble_with DribbbleAPI::ShotLikeNotFound
+        @shot.like?
+      end
+
+      it 'return a user' do
+        expect(subject).to be_falsy
+      end
+    end
+
+    describe 'on a liked shot' do
+      subject do
+        stub_dribbble_with DribbbleAPI::ShotLikeSuccess
+        @shot.like?
+      end
+
+      it 'return a user' do
+        expect(subject).to be_truthy
+      end
+    end
+  end
+
+  describe 'on #like!' do
+    subject do
+      stub_dribbble_with DribbbleAPI::ShotLikeCreated
+      @shot.like!
+    end
+
+    it 'return true' do
+      expect(subject).to be_truthy
+    end
+  end
+
+  describe 'on #unlike!' do
+    subject do
+      stub_dribbble_with DribbbleAPI::ShotLikeDeleted
+      @shot.unlike!
+    end
+
+    it 'return true' do
+      expect(subject).to be_truthy
+    end
+  end
+
   describe 'on #find' do
     subject do
       stub_dribbble_with DribbbleAPI::ShotSuccess

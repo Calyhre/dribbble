@@ -20,6 +20,10 @@ module DribbbleAPI
       json_response
     end
 
+    delete '/*' do
+      json_response
+    end
+
     protected
 
     def json_file_name
@@ -52,6 +56,12 @@ module DribbbleAPI
   class Accepted < Base
     def status_code
       202
+    end
+  end
+
+  class Deleted < Base
+    def status_code
+      204
     end
   end
 
@@ -103,7 +113,19 @@ module DribbbleAPI
   class ShotAccepted < Accepted
   end
 
-  class ShotLikesSuccess < Accepted
+  class ShotLikeSuccess < Found
+  end
+
+  class ShotLikeNotFound < NotFound
+  end
+
+  class ShotLikeCreated < Created
+  end
+
+  class ShotLikeDeleted < Deleted
+  end
+
+  class ShotLikesSuccess < Found
   end
 
   class ShotsSuccess < Found

@@ -26,5 +26,22 @@ module Dribbble
     def likes(attrs = {})
       Dribbble::User.batch_new token, get("/shots/#{id}/likes", attrs), 'user'
     end
+
+    def like?
+      get "/shots/#{id}/like"
+      true
+    rescue RestClient::ResourceNotFound
+      false
+    end
+
+    def like!
+      res = post "/shots/#{id}/like"
+      res.code == 201 ? true : false
+    end
+
+    def unlike!
+      res = delete "/shots/#{id}/like"
+      res.code == 204 ? true : false
+    end
   end
 end
