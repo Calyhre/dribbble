@@ -26,6 +26,17 @@ describe Dribbble::Shot do
     end
   end
 
+  describe 'on #buckets' do
+    subject do
+      stub_dribbble_with DribbbleAPI::BucketsSuccess
+      @shot.buckets
+    end
+
+    it 'return a shot' do
+      expect(subject.first).to be_a Dribbble::Bucket
+    end
+  end
+
   describe 'on #find' do
     subject do
       stub_dribbble_with DribbbleAPI::ShotSuccess

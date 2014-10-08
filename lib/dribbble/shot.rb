@@ -13,5 +13,9 @@ module Dribbble
     def attachments(attrs = {})
       Dribbble::Attachment.batch_new token, get("/shots/#{id}/attachments", attrs)
     end
+
+    def buckets(attrs = {})
+      Dribbble::Bucket.batch_new token, get("/shots/#{id}/buckets", attrs)
+    end
   end
 end
