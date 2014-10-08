@@ -26,4 +26,15 @@ describe Dribbble::Shot do
       expect(subject.id).to eq(471_756)
     end
   end
+
+  describe 'on #all' do
+    subject do
+      stub_dribbble_with DribbbleAPI::ShotsSuccess
+      Dribbble::Shot.all 'valid_token'
+    end
+
+    it 'return a shot' do
+      expect(subject.first).to be_a Dribbble::Shot
+    end
+  end
 end
