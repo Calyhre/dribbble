@@ -43,6 +43,39 @@ describe Dribbble::Client do
     end
   end
 
+  describe 'on #get_buckets' do
+    subject do
+      stub_dribbble_with DribbbleAPI::BucketsSuccess
+      @base.get_buckets
+    end
+
+    it 'return buckets' do
+      expect(subject.first).to be_a Dribbble::Bucket
+    end
+  end
+
+  describe 'on #get_followers' do
+    subject do
+      stub_dribbble_with DribbbleAPI::FollowersSuccess
+      @base.get_followers
+    end
+
+    it 'return users' do
+      expect(subject.first).to be_a Dribbble::User
+    end
+  end
+
+  describe 'on #get_likes' do
+    subject do
+      stub_dribbble_with DribbbleAPI::LikesSuccess
+      @base.get_likes
+    end
+
+    it 'return shots' do
+      expect(subject.first).to be_a Dribbble::Shot
+    end
+  end
+
   describe 'on #get_project' do
     subject do
       stub_dribbble_with DribbbleAPI::ProjectSuccess
@@ -55,6 +88,17 @@ describe Dribbble::Client do
     end
   end
 
+  describe 'on #get_projects' do
+    subject do
+      stub_dribbble_with DribbbleAPI::ProjectsSuccess
+      @base.get_projects
+    end
+
+    it 'return projects' do
+      expect(subject.first).to be_a Dribbble::Project
+    end
+  end
+
   describe 'on #get_shot' do
     subject do
       stub_dribbble_with DribbbleAPI::ShotSuccess
@@ -64,6 +108,28 @@ describe Dribbble::Client do
     it 'return a shot' do
       expect(subject).to be_a Dribbble::Shot
       expect(subject.id).to eq(471_756)
+    end
+  end
+
+  describe 'on #get_shots' do
+    subject do
+      stub_dribbble_with DribbbleAPI::ShotsSuccess
+      @base.get_shots
+    end
+
+    it 'return shots' do
+      expect(subject.first).to be_a Dribbble::Shot
+    end
+  end
+
+  describe 'on #get_teams' do
+    subject do
+      stub_dribbble_with DribbbleAPI::TeamsSuccess
+      @base.get_teams
+    end
+
+    it 'return teams' do
+      expect(subject.first).to be_a Dribbble::Team
     end
   end
 
