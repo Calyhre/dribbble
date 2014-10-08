@@ -53,7 +53,7 @@ describe Dribbble::User do
 
   describe '#likes' do
     subject do
-      stub_dribbble_with DribbbleAPI::LikesSuccess
+      stub_dribbble_with DribbbleAPI::UserLikesSuccess
       @user.likes
     end
 

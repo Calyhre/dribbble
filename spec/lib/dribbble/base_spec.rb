@@ -67,7 +67,7 @@ describe Dribbble::Client do
 
   describe 'on #get_likes' do
     subject do
-      stub_dribbble_with DribbbleAPI::LikesSuccess
+      stub_dribbble_with DribbbleAPI::UserLikesSuccess
       @base.get_likes
     end
 

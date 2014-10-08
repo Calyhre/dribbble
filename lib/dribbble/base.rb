@@ -16,10 +16,14 @@ module Dribbble
       end
     end
 
-    def self.batch_new(token, json)
+    def self.batch_new(token, json, kind = nil)
       json = JSON.parse json unless json.is_a? Hash
       json.map do |obj|
-        new token, obj
+        if kind
+          new token, obj[kind]
+        else
+          new token, obj
+        end
       end
     end
 
@@ -40,7 +44,7 @@ module Dribbble
 
     # Get authenticated user's likes
     def get_likes(attrs = {})
-      Dribbble::Shot.batch_new token, get('/user/likes', attrs)
+      Dribbble::Shot.batch_new token, get('/user/likes', attrs), 'shot'
     end
 
     # Get a single project

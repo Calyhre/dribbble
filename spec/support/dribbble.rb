@@ -88,7 +88,7 @@ module DribbbleAPI
   class FollowersSuccess < Found
   end
 
-  class LikesSuccess < Found
+  class UserLikesSuccess < Found
   end
 
   class ProjectSuccess < Found

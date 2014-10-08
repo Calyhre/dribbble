@@ -17,7 +17,7 @@ module Dribbble
     end
 
     def likes(attrs = {})
-      Dribbble::Shot.batch_new token, get("/users/#{id}/likes", attrs)
+      Dribbble::Shot.batch_new token, get("/users/#{id}/likes", attrs), 'shot'
     end
 
     def projects(attrs = {})
