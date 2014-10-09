@@ -116,6 +116,17 @@ describe Dribbble::Shot do
     end
   end
 
+  describe 'on #rebounds' do
+    subject do
+      stub_dribbble_with DribbbleAPI::ShotsSuccess
+      @shot.rebounds
+    end
+
+    it 'return a list of shots' do
+      expect(subject.first).to be_a Dribbble::Shot
+    end
+  end
+
   describe 'on #find' do
     subject do
       stub_dribbble_with DribbbleAPI::ShotSuccess

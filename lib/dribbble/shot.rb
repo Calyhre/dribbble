@@ -47,5 +47,9 @@ module Dribbble
     def projects(attrs = {})
       Dribbble::Project.batch_new token, get("/shots/#{id}/projects", attrs)
     end
+
+    def rebounds(attrs = {})
+      Dribbble::Shot.batch_new token, get("/shots/#{id}/rebounds", attrs)
+    end
   end
 end
