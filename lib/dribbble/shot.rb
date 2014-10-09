@@ -43,5 +43,9 @@ module Dribbble
       res = delete "/shots/#{id}/like"
       res.code == 204 ? true : false
     end
+
+    def projects(attrs = {})
+      Dribbble::Project.batch_new token, get("/shots/#{id}/projects", attrs)
+    end
   end
 end

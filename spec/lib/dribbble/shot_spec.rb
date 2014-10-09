@@ -105,6 +105,17 @@ describe Dribbble::Shot do
     end
   end
 
+  describe 'on #projects' do
+    subject do
+      stub_dribbble_with DribbbleAPI::ProjectsSuccess
+      @shot.projects
+    end
+
+    it 'return a list of project' do
+      expect(subject.first).to be_a Dribbble::Project
+    end
+  end
+
   describe 'on #find' do
     subject do
       stub_dribbble_with DribbbleAPI::ShotSuccess
