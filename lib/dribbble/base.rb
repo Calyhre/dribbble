@@ -67,6 +67,12 @@ module Dribbble
       Dribbble::Shot.batch_new token, get('/user/shots', attrs)
     end
 
+    # Get authenticated user's followees shots
+    # Limited to first 600 shots regardless of the pagination
+    def get_following_shots(attrs = {})
+      Dribbble::Shot.batch_new token, get('/user/following/shots', attrs)
+    end
+
     # Get authenticated user's teams
     def get_teams(attrs = {})
       Dribbble::Team.batch_new token, get('/user/teams', attrs)

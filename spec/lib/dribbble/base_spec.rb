@@ -122,6 +122,17 @@ describe Dribbble::Client do
     end
   end
 
+  describe 'on #get_following_shots' do
+    subject do
+      stub_dribbble_with DribbbleAPI::ShotsSuccess
+      @base.get_following_shots
+    end
+
+    it 'return shots' do
+      expect(subject.first).to be_a Dribbble::Shot
+    end
+  end
+
   describe 'on #get_teams' do
     subject do
       stub_dribbble_with DribbbleAPI::TeamsSuccess
