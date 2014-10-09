@@ -16,6 +16,10 @@ module Dribbble
       Dribbble::User.batch_new token, get("/users/#{id}/followers", attrs)
     end
 
+    def following(attrs = {})
+      Dribbble::User.batch_new token, get("/users/#{id}/following", attrs), 'followee'
+    end
+
     def likes(attrs = {})
       Dribbble::Shot.batch_new token, get("/users/#{id}/likes", attrs), 'shot'
     end

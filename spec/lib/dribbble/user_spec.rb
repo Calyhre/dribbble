@@ -51,6 +51,19 @@ describe Dribbble::User do
     end
   end
 
+  describe '#following' do
+    subject do
+      stub_dribbble_with DribbbleAPI::FollowingSuccess
+      @user.following
+    end
+
+    it 'responds with users' do
+      expect(subject.size).to eq 1
+      expect(subject.first).to be_a Dribbble::User
+      expect(subject.first.name).to eq('Dan Cederholm')
+    end
+  end
+
   describe '#likes' do
     subject do
       stub_dribbble_with DribbbleAPI::UserLikesSuccess
@@ -60,6 +73,7 @@ describe Dribbble::User do
     it 'responds with shots' do
       expect(subject.size).to eq 1
       expect(subject.first).to be_a Dribbble::Shot
+      expect(subject.first.title).to eq('Sasquatch')
     end
   end
 
