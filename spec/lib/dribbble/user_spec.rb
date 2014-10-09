@@ -64,6 +64,78 @@ describe Dribbble::User do
     end
   end
 
+  describe 'on #following?' do
+    describe 'for current logged user' do
+      describe 'on a not followed user' do
+        subject do
+          stub_dribbble_with DribbbleAPI::UserFollowNotFound
+          @user.following?
+        end
+
+        it 'return false' do
+          expect(subject).to be_falsy
+        end
+      end
+
+      describe 'on a followed user' do
+        subject do
+          stub_dribbble_with DribbbleAPI::UserFollowSuccess
+          @user.following?
+        end
+
+        it 'return true' do
+          expect(subject).to be_truthy
+        end
+      end
+    end
+
+    describe 'for another user' do
+      describe 'on a not followed user' do
+        subject do
+          stub_dribbble_with DribbbleAPI::UserFollowNotFound
+          @user.following? 1
+        end
+
+        it 'return false' do
+          expect(subject).to be_falsy
+        end
+      end
+
+      describe 'on a followed user' do
+        subject do
+          stub_dribbble_with DribbbleAPI::UserFollowSuccess
+          @user.following? 1
+        end
+
+        it 'return true' do
+          expect(subject).to be_truthy
+        end
+      end
+    end
+  end
+
+  describe 'on #follow!' do
+    subject do
+      stub_dribbble_with DribbbleAPI::UserFollowCreated
+      @user.follow!
+    end
+
+    it 'return true' do
+      expect(subject).to be_truthy
+    end
+  end
+
+  describe 'on #unfollow!' do
+    subject do
+      stub_dribbble_with DribbbleAPI::UserFollowDeleted
+      @user.unfollow!
+    end
+
+    it 'return true' do
+      expect(subject).to be_truthy
+    end
+  end
+
   describe '#likes' do
     subject do
       stub_dribbble_with DribbbleAPI::UserLikesSuccess

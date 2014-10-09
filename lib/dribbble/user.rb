@@ -20,6 +20,27 @@ module Dribbble
       Dribbble::User.batch_new token, get("/users/#{id}/following", attrs), 'followee'
     end
 
+    def following?(other_user_id = nil)
+      if other_user_id
+        get "/users/#{id}/following/#{other_user_id}"
+      else
+        get "/user/following/#{id}"
+      end
+      true
+    rescue RestClient::ResourceNotFound
+      false
+    end
+
+    def follow!
+      res = post "/users/#{id}/follow"
+      res.code == 204 ? true : false
+    end
+
+    def unfollow!
+      res = delete "/users/#{id}/follow"
+      res.code == 204 ? true : false
+    end
+
     def likes(attrs = {})
       Dribbble::Shot.batch_new token, get("/users/#{id}/likes", attrs), 'shot'
     end

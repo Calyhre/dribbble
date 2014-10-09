@@ -65,6 +65,9 @@ module DribbbleAPI
     end
   end
 
+  class NoContent < Deleted
+  end
+
   class NotFound < Base
     def status_code
       404
@@ -99,6 +102,18 @@ module DribbbleAPI
   end
 
   class FollowingSuccess < Found
+  end
+
+  class UserFollowSuccess < Found
+  end
+
+  class UserFollowNotFound < NotFound
+  end
+
+  class UserFollowCreated < NoContent
+  end
+
+  class UserFollowDeleted < Deleted
   end
 
   class UserLikesSuccess < Found
