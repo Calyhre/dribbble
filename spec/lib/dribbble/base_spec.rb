@@ -33,7 +33,7 @@ describe Dribbble::Client do
 
   describe 'on #get_bucket' do
     subject do
-      stub_dribbble_with DribbbleAPI::BucketSuccess
+      stub_dribbble :get, '/buckets/2754', DribbbleAPI::BucketSuccess
       @base.get_bucket 2754
     end
 
@@ -45,7 +45,7 @@ describe Dribbble::Client do
 
   describe 'on #get_buckets' do
     subject do
-      stub_dribbble_with DribbbleAPI::BucketsSuccess
+      stub_dribbble :get, '/user/buckets', DribbbleAPI::BucketsSuccess
       @base.get_buckets
     end
 
@@ -56,7 +56,7 @@ describe Dribbble::Client do
 
   describe 'on #get_followers' do
     subject do
-      stub_dribbble_with DribbbleAPI::FollowersSuccess
+      stub_dribbble :get, '/user/followers', DribbbleAPI::FollowersSuccess
       @base.get_followers
     end
 
@@ -67,7 +67,7 @@ describe Dribbble::Client do
 
   describe 'on #get_likes' do
     subject do
-      stub_dribbble_with DribbbleAPI::UserLikesSuccess
+      stub_dribbble :get, '/user/likes', DribbbleAPI::UserLikesSuccess
       @base.get_likes
     end
 
@@ -78,7 +78,7 @@ describe Dribbble::Client do
 
   describe 'on #get_project' do
     subject do
-      stub_dribbble_with DribbbleAPI::ProjectSuccess
+      stub_dribbble :get, '/projects/3', DribbbleAPI::ProjectSuccess
       @base.get_project 3
     end
 
@@ -90,7 +90,7 @@ describe Dribbble::Client do
 
   describe 'on #get_projects' do
     subject do
-      stub_dribbble_with DribbbleAPI::ProjectsSuccess
+      stub_dribbble :get, '/user/projects', DribbbleAPI::ProjectsSuccess
       @base.get_projects
     end
 
@@ -101,7 +101,7 @@ describe Dribbble::Client do
 
   describe 'on #get_shot' do
     subject do
-      stub_dribbble_with DribbbleAPI::ShotSuccess
+      stub_dribbble :get, '/shots/471756', DribbbleAPI::ShotSuccess
       @base.get_shot 471_756
     end
 
@@ -113,7 +113,7 @@ describe Dribbble::Client do
 
   describe 'on #get_shots' do
     subject do
-      stub_dribbble_with DribbbleAPI::ShotsSuccess
+      stub_dribbble :get, '/user/shots', DribbbleAPI::ShotsSuccess
       @base.get_shots
     end
 
@@ -124,7 +124,7 @@ describe Dribbble::Client do
 
   describe 'on #get_following_shots' do
     subject do
-      stub_dribbble_with DribbbleAPI::ShotsSuccess
+      stub_dribbble :get, '/user/following/shots', DribbbleAPI::ShotsSuccess
       @base.get_following_shots
     end
 
@@ -135,7 +135,7 @@ describe Dribbble::Client do
 
   describe 'on #get_teams' do
     subject do
-      stub_dribbble_with DribbbleAPI::TeamsSuccess
+      stub_dribbble :get, '/user/teams', DribbbleAPI::TeamsSuccess
       @base.get_teams
     end
 
@@ -147,7 +147,7 @@ describe Dribbble::Client do
   describe 'on #get_user' do
     describe 'without id' do
       subject do
-        stub_dribbble_with DribbbleAPI::CurrentUserSuccess
+        stub_dribbble :get, '/user', DribbbleAPI::CurrentUserSuccess
         @base.get_user
       end
 
@@ -159,7 +159,7 @@ describe Dribbble::Client do
 
     describe 'with id' do
       subject do
-        stub_dribbble_with DribbbleAPI::UserSuccess
+        stub_dribbble :get, '/users/483195', DribbbleAPI::UserSuccess
         @base.get_user 483_195
       end
 

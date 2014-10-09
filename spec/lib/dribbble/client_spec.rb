@@ -12,7 +12,7 @@ describe Dribbble::Client do
   describe 'on #user' do
     describe 'with an invalid token' do
       subject do
-        stub_dribbble_with DribbbleAPI::Unauthorized
+        stub_dribbble :get, '/user', DribbbleAPI::Unauthorized
         Dribbble::Client.new(token: 'fake_invalid_token')
       end
 
@@ -25,7 +25,7 @@ describe Dribbble::Client do
 
     describe 'with a valid token' do
       subject do
-        stub_dribbble_with DribbbleAPI::UserSuccess
+        stub_dribbble :get, '/user', DribbbleAPI::UserSuccess
         Dribbble::Client.new(token: 'valid_token')
       end
 
@@ -38,7 +38,7 @@ describe Dribbble::Client do
 
   describe 'on #create_shot' do
     before :all do
-      stub_dribbble_with DribbbleAPI::ShotAccepted
+      stub_dribbble :post, '/shots', DribbbleAPI::ShotAccepted
       @shot = {
         title: 'Shot title',
         desciption: 'Shot description',
@@ -59,7 +59,7 @@ describe Dribbble::Client do
 
   describe 'on #create_bucket' do
     before :all do
-      stub_dribbble_with DribbbleAPI::BucketCreated
+      stub_dribbble :post, '/buckets', DribbbleAPI::BucketCreated
       @bucket = {
         name: 'Bucket title',
         desciption: 'Bucket description'

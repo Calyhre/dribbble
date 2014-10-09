@@ -17,7 +17,7 @@ describe Dribbble::Shot do
 
   describe 'on #attachments' do
     subject do
-      stub_dribbble_with DribbbleAPI::AttachmentsSuccess
+      stub_dribbble :get, '/shots/471756/attachments', DribbbleAPI::AttachmentsSuccess
       @shot.attachments
     end
 
@@ -28,7 +28,7 @@ describe Dribbble::Shot do
 
   describe 'on #buckets' do
     subject do
-      stub_dribbble_with DribbbleAPI::BucketsSuccess
+      stub_dribbble :get, '/shots/471756/buckets', DribbbleAPI::BucketsSuccess
       @shot.buckets
     end
 
@@ -39,7 +39,7 @@ describe Dribbble::Shot do
 
   describe 'on #comments' do
     subject do
-      stub_dribbble_with DribbbleAPI::CommentsSuccess
+      stub_dribbble :get, '/shots/471756/comments', DribbbleAPI::CommentsSuccess
       @shot.comments
     end
 
@@ -50,7 +50,7 @@ describe Dribbble::Shot do
 
   describe 'on #likes' do
     subject do
-      stub_dribbble_with DribbbleAPI::ShotLikesSuccess
+      stub_dribbble :get, '/shots/471756/likes', DribbbleAPI::ShotLikesSuccess
       @shot.likes
     end
 
@@ -62,7 +62,7 @@ describe Dribbble::Shot do
   describe 'on #like?' do
     describe 'on a not liked shot' do
       subject do
-        stub_dribbble_with DribbbleAPI::ShotLikeNotFound
+        stub_dribbble :get, '/shots/471756/like', DribbbleAPI::ShotLikeNotFound
         @shot.like?
       end
 
@@ -73,7 +73,7 @@ describe Dribbble::Shot do
 
     describe 'on a liked shot' do
       subject do
-        stub_dribbble_with DribbbleAPI::ShotLikeSuccess
+        stub_dribbble :get, '/shots/471756/like', DribbbleAPI::ShotLikeSuccess
         @shot.like?
       end
 
@@ -85,7 +85,7 @@ describe Dribbble::Shot do
 
   describe 'on #like!' do
     subject do
-      stub_dribbble_with DribbbleAPI::ShotLikeCreated
+      stub_dribbble :post, '/shots/471756/like', DribbbleAPI::ShotLikeCreated
       @shot.like!
     end
 
@@ -96,7 +96,7 @@ describe Dribbble::Shot do
 
   describe 'on #unlike!' do
     subject do
-      stub_dribbble_with DribbbleAPI::ShotLikeDeleted
+      stub_dribbble :delete, '/shots/471756/like', DribbbleAPI::ShotLikeDeleted
       @shot.unlike!
     end
 
@@ -107,7 +107,7 @@ describe Dribbble::Shot do
 
   describe 'on #projects' do
     subject do
-      stub_dribbble_with DribbbleAPI::ProjectsSuccess
+      stub_dribbble :get, '/shots/471756/projects', DribbbleAPI::ProjectsSuccess
       @shot.projects
     end
 
@@ -118,7 +118,7 @@ describe Dribbble::Shot do
 
   describe 'on #rebounds' do
     subject do
-      stub_dribbble_with DribbbleAPI::ShotsSuccess
+      stub_dribbble :get, '/shots/471756/rebounds', DribbbleAPI::ShotsSuccess
       @shot.rebounds
     end
 
@@ -129,7 +129,7 @@ describe Dribbble::Shot do
 
   describe 'on #find' do
     subject do
-      stub_dribbble_with DribbbleAPI::ShotSuccess
+      stub_dribbble :get, '/shots/471756', DribbbleAPI::ShotSuccess
       Dribbble::Shot.find 'valid_token', 471_756
     end
 
@@ -141,7 +141,7 @@ describe Dribbble::Shot do
 
   describe 'on #all' do
     subject do
-      stub_dribbble_with DribbbleAPI::ShotsSuccess
+      stub_dribbble :get, '/shots', DribbbleAPI::ShotsSuccess
       Dribbble::Shot.all 'valid_token'
     end
 

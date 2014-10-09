@@ -17,7 +17,7 @@ describe Dribbble::Bucket do
 
   describe 'on #find' do
     subject do
-      stub_dribbble_with DribbbleAPI::BucketSuccess
+      stub_dribbble :get, '/buckets/2754', DribbbleAPI::BucketSuccess
       Dribbble::Bucket.find 'valid_token', 2754
     end
 
@@ -29,7 +29,7 @@ describe Dribbble::Bucket do
 
   describe 'on #shots' do
     subject do
-      stub_dribbble_with DribbbleAPI::ShotsSuccess
+      stub_dribbble :get, '/bucket/2754/shots', DribbbleAPI::ShotsSuccess
       @bucket.shots
     end
 

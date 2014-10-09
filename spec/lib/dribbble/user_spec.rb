@@ -17,7 +17,7 @@ describe Dribbble::User do
 
   describe 'on #find' do
     subject do
-      stub_dribbble_with DribbbleAPI::UserSuccess
+      stub_dribbble :get, '/users/483195', DribbbleAPI::UserSuccess
       Dribbble::User.find 'valid_token', 483_195
     end
 
@@ -29,7 +29,7 @@ describe Dribbble::User do
 
   describe 'on #buckets' do
     subject do
-      stub_dribbble_with DribbbleAPI::BucketsSuccess
+      stub_dribbble :get, '/users/483195/buckets', DribbbleAPI::BucketsSuccess
       @user.buckets
     end
 
@@ -41,7 +41,7 @@ describe Dribbble::User do
 
   describe '#followers' do
     subject do
-      stub_dribbble_with DribbbleAPI::FollowersSuccess
+      stub_dribbble :get, '/users/483195/followers', DribbbleAPI::FollowersSuccess
       @user.followers
     end
 
@@ -53,7 +53,7 @@ describe Dribbble::User do
 
   describe '#following' do
     subject do
-      stub_dribbble_with DribbbleAPI::FollowingSuccess
+      stub_dribbble :get, '/users/483195/following', DribbbleAPI::FollowingSuccess
       @user.following
     end
 
@@ -68,7 +68,7 @@ describe Dribbble::User do
     describe 'for current logged user' do
       describe 'on a not followed user' do
         subject do
-          stub_dribbble_with DribbbleAPI::UserFollowNotFound
+          stub_dribbble :get, '/user/following/483195', DribbbleAPI::UserFollowNotFound
           @user.following?
         end
 
@@ -79,7 +79,7 @@ describe Dribbble::User do
 
       describe 'on a followed user' do
         subject do
-          stub_dribbble_with DribbbleAPI::UserFollowSuccess
+          stub_dribbble :get, '/user/following/483195', DribbbleAPI::UserFollowSuccess
           @user.following?
         end
 
@@ -92,7 +92,7 @@ describe Dribbble::User do
     describe 'for another user' do
       describe 'on a not followed user' do
         subject do
-          stub_dribbble_with DribbbleAPI::UserFollowNotFound
+          stub_dribbble :get, '/users/483195/following/1', DribbbleAPI::UserFollowNotFound
           @user.following? 1
         end
 
@@ -103,7 +103,7 @@ describe Dribbble::User do
 
       describe 'on a followed user' do
         subject do
-          stub_dribbble_with DribbbleAPI::UserFollowSuccess
+          stub_dribbble :get, '/users/483195/following/1', DribbbleAPI::UserFollowSuccess
           @user.following? 1
         end
 
@@ -116,7 +116,7 @@ describe Dribbble::User do
 
   describe 'on #follow!' do
     subject do
-      stub_dribbble_with DribbbleAPI::UserFollowCreated
+      stub_dribbble :put, '/users/483195/follow', DribbbleAPI::UserFollowCreated
       @user.follow!
     end
 
@@ -127,7 +127,7 @@ describe Dribbble::User do
 
   describe 'on #unfollow!' do
     subject do
-      stub_dribbble_with DribbbleAPI::UserFollowDeleted
+      stub_dribbble :delete, '/users/483195/follow', DribbbleAPI::UserFollowDeleted
       @user.unfollow!
     end
 
@@ -138,7 +138,7 @@ describe Dribbble::User do
 
   describe '#likes' do
     subject do
-      stub_dribbble_with DribbbleAPI::UserLikesSuccess
+      stub_dribbble :get, '/users/483195/likes', DribbbleAPI::UserLikesSuccess
       @user.likes
     end
 
@@ -151,7 +151,7 @@ describe Dribbble::User do
 
   describe '#projects' do
     subject do
-      stub_dribbble_with DribbbleAPI::ProjectsSuccess
+      stub_dribbble :get, '/users/483195/projects', DribbbleAPI::ProjectsSuccess
       @user.projects
     end
 
@@ -163,7 +163,7 @@ describe Dribbble::User do
 
   describe '#shots' do
     subject do
-      stub_dribbble_with DribbbleAPI::ShotsSuccess
+      stub_dribbble :get, '/users/483195/shots', DribbbleAPI::ShotsSuccess
       @user.shots
     end
 
@@ -175,7 +175,7 @@ describe Dribbble::User do
 
   describe '#teams' do
     subject do
-      stub_dribbble_with DribbbleAPI::TeamsSuccess
+      stub_dribbble :get, '/users/483195/teams', DribbbleAPI::TeamsSuccess
       @user.teams
     end
 

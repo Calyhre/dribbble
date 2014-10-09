@@ -2,9 +2,9 @@ require 'spec_helper'
 
 RAW_PROJECT = data_from_json 'project_success.json'
 
-describe Dribbble::Shot do
+describe Dribbble::Project do
   before :all do
-    @project = Dribbble::Bucket.new 'valid_token', RAW_PROJECT
+    @project = Dribbble::Project.new 'valid_token', RAW_PROJECT
   end
 
   describe 'after initialization' do
@@ -17,7 +17,7 @@ describe Dribbble::Shot do
 
   describe 'on #find' do
     subject do
-      stub_dribbble_with DribbbleAPI::ProjectSuccess
+      stub_dribbble :get, '/projects/3', DribbbleAPI::ProjectSuccess
       Dribbble::Project.find 'valid_token', 3
     end
 
@@ -29,7 +29,7 @@ describe Dribbble::Shot do
 
   describe 'on #shots' do
     subject do
-      stub_dribbble_with DribbbleAPI::ShotsSuccess
+      stub_dribbble :get, '/projects/3/shots', DribbbleAPI::ShotsSuccess
       @project.shots
     end
 
