@@ -32,7 +32,7 @@ module Dribbble
     end
 
     def follow!
-      res = post "/users/#{id}/follow"
+      res = put "/users/#{id}/follow"
       res.code == 204 ? true : false
     end
 

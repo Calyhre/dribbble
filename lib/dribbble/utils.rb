@@ -38,6 +38,17 @@ module Dribbble
       raise Dribbble::Error::Unprocessable, e
     end
 
+    def put(path, attrs = {})
+      payload = {}
+      yield payload if block_given?
+      res = RestClient.put full_url(path, attrs), payload, headers
+      res.force_encoding('UTF-8')
+    rescue RestClient::Unauthorized => e
+      raise Dribbble::Error::Unauthorized, e
+    rescue RestClient::UnprocessableEntity => e
+      raise Dribbble::Error::Unprocessable, e
+    end
+
     def delete(path, attrs = {})
       res = RestClient.delete full_url(path, attrs), headers
       res.force_encoding('UTF-8')

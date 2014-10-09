@@ -20,6 +20,10 @@ module DribbbleAPI
       json_response
     end
 
+    put '/*' do
+      json_response
+    end
+
     delete '/*' do
       json_response
     end
