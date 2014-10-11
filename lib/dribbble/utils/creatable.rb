@@ -4,7 +4,7 @@ module Dribbble
       module ClassMethods
         def create(token, attrs)
           @token = token
-          res = post "/#{pluralize_name}" do |payload|
+          res = html_post "/#{pluralize_name}" do |payload|
             available_fields.each { |f| payload[f] = attrs[f] }
           end
           after_create(res)

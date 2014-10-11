@@ -9,7 +9,7 @@ module Dribbble
     include Dribbble::Utils::Updatable
 
     def shots(attrs = {})
-      Dribbble::Shot.batch_new token, get("/bucket/#{id}/shots", attrs)
+      Dribbble::Shot.batch_new token, html_get("/bucket/#{id}/shots", attrs)
     end
 
     def self.available_fields

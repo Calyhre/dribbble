@@ -29,61 +29,61 @@ module Dribbble
 
     # Get a single bucket
     def get_bucket(id)
-      Dribbble::Bucket.new @token, get("/buckets/#{id}")
+      Dribbble::Bucket.new @token, html_get("/buckets/#{id}")
     end
 
     # Get authenticated user's buckets
     def get_buckets(attrs = {})
-      Dribbble::Bucket.batch_new token, get('/user/buckets', attrs)
+      Dribbble::Bucket.batch_new token, html_get('/user/buckets', attrs)
     end
 
     # Get authenticated user's followers
     def get_followers(attrs = {})
-      Dribbble::User.batch_new token, get('/user/followers', attrs)
+      Dribbble::User.batch_new token, html_get('/user/followers', attrs)
     end
 
     # Get authenticated user's likes
     def get_likes(attrs = {})
-      Dribbble::Shot.batch_new token, get('/user/likes', attrs), 'shot'
+      Dribbble::Shot.batch_new token, html_get('/user/likes', attrs), 'shot'
     end
 
     # Get a single project
     def get_project(id)
-      Dribbble::Project.new @token, get("/projects/#{id}")
+      Dribbble::Project.new @token, html_get("/projects/#{id}")
     end
 
     # Get authenticated user's followers
     def get_projects(attrs = {})
-      Dribbble::Project.batch_new token, get('/user/projects', attrs)
+      Dribbble::Project.batch_new token, html_get('/user/projects', attrs)
     end
 
     # Get a single Shot
     def get_shot(id)
-      Dribbble::Shot.new @token, get("/shots/#{id}")
+      Dribbble::Shot.new @token, html_get("/shots/#{id}")
     end
 
     # Get authenticated user's shots
     def get_shots(attrs = {})
-      Dribbble::Shot.batch_new token, get('/user/shots', attrs)
+      Dribbble::Shot.batch_new token, html_get('/user/shots', attrs)
     end
 
     # Get authenticated user's followees shots
     # Limited to first 600 shots regardless of the pagination
     def get_following_shots(attrs = {})
-      Dribbble::Shot.batch_new token, get('/user/following/shots', attrs)
+      Dribbble::Shot.batch_new token, html_get('/user/following/shots', attrs)
     end
 
     # Get authenticated user's teams
     def get_teams(attrs = {})
-      Dribbble::Team.batch_new token, get('/user/teams', attrs)
+      Dribbble::Team.batch_new token, html_get('/user/teams', attrs)
     end
 
     # Get a single User or the authenticated one
     def get_user(id = nil)
       if id
-        Dribbble::User.new @token, get("/users/#{id}")
+        Dribbble::User.new @token, html_get("/users/#{id}")
       else
-        Dribbble::User.new @token, get('/user')
+        Dribbble::User.new @token, html_get('/user')
       end
     end
   end

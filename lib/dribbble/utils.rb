@@ -20,14 +20,14 @@ module Dribbble
       end
     end
 
-    def get(path, attrs = {})
+    def html_get(path, attrs = {})
       res = RestClient.get full_url(path, attrs), headers
       res.force_encoding('UTF-8')
     rescue RestClient::Unauthorized => e
       raise Dribbble::Error::Unauthorized, e
     end
 
-    def post(path, attrs = {})
+    def html_post(path, attrs = {})
       payload = {}
       yield payload if block_given?
       res = RestClient.post full_url(path, attrs), payload, headers
@@ -38,7 +38,7 @@ module Dribbble
       raise Dribbble::Error::Unprocessable, e
     end
 
-    def put(path, attrs = {})
+    def html_put(path, attrs = {})
       payload = {}
       yield payload if block_given?
       res = RestClient.put full_url(path, attrs), payload, headers
@@ -49,7 +49,7 @@ module Dribbble
       raise Dribbble::Error::Unprocessable, e
     end
 
-    def delete(path, attrs = {})
+    def html_delete(path, attrs = {})
       res = RestClient.delete full_url(path, attrs), headers
       res.force_encoding('UTF-8')
     rescue RestClient::Unauthorized => e
