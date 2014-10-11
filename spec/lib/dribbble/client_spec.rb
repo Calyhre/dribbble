@@ -35,44 +35,4 @@ describe Dribbble::Client do
       end
     end
   end
-
-  describe 'on #create_shot' do
-    before :all do
-      stub_dribbble :post, '/shots', DribbbleAPI::ShotAccepted
-      @shot = {
-        title: 'Shot title',
-        desciption: 'Shot description',
-        image: File.new("#{Dir.pwd}/spec/support/fixtures/image.jpg", 'rb'),
-        tags: %w(tag1 tag2)
-      }
-      @client = Dribbble::Client.new(token: 'valid_token')
-    end
-
-    subject do
-      @client.create_shot(@shot)
-    end
-
-    it 'create the shot' do
-      expect(subject).to be_truthy
-    end
-  end
-
-  describe 'on #create_bucket' do
-    before :all do
-      stub_dribbble :post, '/buckets', DribbbleAPI::BucketCreated
-      @bucket = {
-        name: 'Bucket title',
-        desciption: 'Bucket description'
-      }
-      @client = Dribbble::Client.new(token: 'valid_token')
-    end
-
-    subject do
-      @client.create_bucket(@bucket)
-    end
-
-    it 'create the shot' do
-      expect(subject).to be_a Dribbble::Bucket
-    end
-  end
 end

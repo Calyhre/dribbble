@@ -1,14 +1,24 @@
 require 'dribbble/utils/findable'
+require 'dribbble/utils/creatable'
 require 'dribbble/attachment'
 require 'dribbble/comment'
 
 module Dribbble
   class Shot < Dribbble::Base
     extend Dribbble::Utils::Findable
+    extend Dribbble::Utils::Creatable
 
     def self.all(token, attrs = {})
       @token = token
       batch_new token, get('/shots', attrs)
+    end
+
+    def self.required_fields
+      %i(title image description tags team_id rebound_source_id)
+    end
+
+    def self.after_create(res)
+      res.code == 202 ? true : false
     end
 
     def attachments(attrs = {})
