@@ -16,6 +16,32 @@ describe Dribbble::Shot do
       end
     end
 
+    describe 'on #update' do
+      subject do
+        stub_dribbble :put, '/shots/471756', DribbbleAPI::ShotUpdated
+        new_shot = {
+          title: 'Shot title',
+          description: 'Shot description'
+        }
+        @shot.update new_shot
+      end
+
+      it 'update shot' do
+        expect(subject.title).to eq('Shot title')
+      end
+    end
+
+    describe 'on #delete' do
+      subject do
+        stub_dribbble :delete, '/shots/471756', DribbbleAPI::ShotDeleted
+        @shot.delete
+      end
+
+      it 'return true' do
+        expect(subject).to eq(true)
+      end
+    end
+
     describe 'on #attachments' do
       subject do
         stub_dribbble :get, '/shots/471756/attachments', DribbbleAPI::AttachmentsSuccess
@@ -143,6 +169,34 @@ describe Dribbble::Shot do
       end
 
       it 'create the shot' do
+        expect(subject).to eq(true)
+      end
+    end
+
+    describe 'on #update' do
+      subject do
+        stub_dribbble :get, '/shots/471756', DribbbleAPI::ShotSuccess
+        stub_dribbble :put, '/shots/471756', DribbbleAPI::ShotUpdated
+        bucket = {
+          name: 'Shot title',
+          description: 'Shot description'
+        }
+        Dribbble::Shot.update 'valid_token', 471_756, bucket
+      end
+
+      it 'update bucket' do
+        expect(subject.title).to eq('Shot title')
+      end
+    end
+
+    describe 'on #delete' do
+      subject do
+        stub_dribbble :get, '/shots/471756', DribbbleAPI::ShotSuccess
+        stub_dribbble :delete, '/shots/471756', DribbbleAPI::ShotDeleted
+        Dribbble::Shot.delete 'valid_token', 471_756
+      end
+
+      it 'return true' do
         expect(subject).to eq(true)
       end
     end

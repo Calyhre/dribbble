@@ -1,5 +1,7 @@
 require 'dribbble/utils/findable'
 require 'dribbble/utils/creatable'
+require 'dribbble/utils/updatable'
+require 'dribbble/utils/deletable'
 require 'dribbble/attachment'
 require 'dribbble/comment'
 
@@ -7,6 +9,8 @@ module Dribbble
   class Shot < Dribbble::Base
     include Dribbble::Utils::Findable
     include Dribbble::Utils::Creatable
+    include Dribbble::Utils::Updatable
+    include Dribbble::Utils::Deletable
 
     def self.all(token, attrs = {})
       @token = token

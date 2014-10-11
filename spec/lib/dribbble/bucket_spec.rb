@@ -87,7 +87,7 @@ describe Dribbble::Bucket do
       end
     end
 
-    describe 'on #update' do
+    describe 'on #delete' do
       subject do
         stub_dribbble :get, '/buckets/2754', DribbbleAPI::BucketSuccess
         stub_dribbble :delete, '/buckets/2754', DribbbleAPI::BucketDeleted

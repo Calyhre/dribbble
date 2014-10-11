@@ -138,6 +138,12 @@ module DribbbleAPI
   class ProjectsSuccess < Found
   end
 
+  class ShotUpdated < Updated
+  end
+
+  class ShotDeleted < Deleted
+  end
+
   class ShotSuccess < Found
   end
 
