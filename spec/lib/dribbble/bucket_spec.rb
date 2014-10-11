@@ -53,6 +53,28 @@ describe Dribbble::Bucket do
         expect(subject.first).to be_a Dribbble::Shot
       end
     end
+
+    describe 'on #add_shot' do
+      subject do
+        stub_dribbble :put, '/buckets/2754/shots', DribbbleAPI::NoContent
+        @bucket.add_shot '471756'
+      end
+
+      it 'add shot' do
+        expect(subject).to eq(true)
+      end
+    end
+
+    describe 'on #remove_shot' do
+      subject do
+        stub_dribbble :delete, '/buckets/2754/shots?shot_id=471756', DribbbleAPI::NoContent
+        @bucket.remove_shot '471756'
+      end
+
+      it 'remove shot' do
+        expect(subject).to eq(true)
+      end
+    end
   end
 
   describe 'on class' do

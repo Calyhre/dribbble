@@ -14,6 +14,20 @@ module Dribbble
       Dribbble::Shot.batch_new token, html_get("/bucket/#{id}/shots", attrs)
     end
 
+    def add_shot(shot)
+      shot_id = shot.is_a?(Dribbble::Shot) ? shot.id : shot
+      res = html_put("/buckets/#{id}/shots") do |payload|
+        payload[:shot_id] = shot_id
+      end
+      res.code == 204 ? true : false
+    end
+
+    def remove_shot(shot)
+      shot_id = shot.is_a?(Dribbble::Shot) ? shot.id : shot
+      res = html_delete "/buckets/#{id}/shots", shot_id: shot_id
+      res.code == 204 ? true : false
+    end
+
     def self.available_fields
       %i(name description)
     end
