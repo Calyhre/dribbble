@@ -12,7 +12,7 @@ RSpec.configure do |config|
 end
 
 def stub_dribbble(method, path, response_class)
-  url = /api.dribbble.com\/v1#{Regexp.escape path}\?.*$/
+  url = /api.dribbble.com\/v1#{Regexp.escape path}(\?.*)?$/
   stub_request(method, url).to_rack(response_class)
 end
 

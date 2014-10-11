@@ -8,8 +8,11 @@ module Dribbble
     }
 
     def full_url(path, attrs = {})
-      query = URI.encode_www_form DEFAULT_ATTRIBUTES.merge(attrs)
-      "#{Dribbble::API_URI}#{path}?#{query}"
+      "#{Dribbble::API_URI}#{path}?#{URI.encode_www_form attrs}"
+    end
+
+    def full_url_with_default_params(path, attrs = {})
+      full_url path, DEFAULT_ATTRIBUTES.merge(attrs)
     end
 
     def headers
@@ -21,7 +24,7 @@ module Dribbble
     end
 
     def html_get(path, attrs = {})
-      res = RestClient.get full_url(path, attrs), headers
+      res = RestClient.get full_url_with_default_params(path, attrs), headers
       res.force_encoding('UTF-8')
     rescue RestClient::Unauthorized => e
       raise Dribbble::Error::Unauthorized, e
