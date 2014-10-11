@@ -105,6 +105,9 @@ module DribbbleAPI
   class BucketUpdated < Updated
   end
 
+  class BucketDeleted < Deleted
+  end
+
   class BucketsSuccess < Found
   end
 

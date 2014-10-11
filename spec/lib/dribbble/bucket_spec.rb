@@ -31,6 +31,17 @@ describe Dribbble::Bucket do
       end
     end
 
+    describe 'on #delete' do
+      subject do
+        stub_dribbble :delete, '/buckets/2754', DribbbleAPI::BucketDeleted
+        @bucket.delete
+      end
+
+      it 'return true' do
+        expect(subject).to eq(true)
+      end
+    end
+
     describe 'on #shots' do
       subject do
         stub_dribbble :get, '/bucket/2754/shots', DribbbleAPI::ShotsSuccess
@@ -73,6 +84,18 @@ describe Dribbble::Bucket do
 
       it 'update bucket' do
         expect(subject.name).to eq('Bucket title')
+      end
+    end
+
+    describe 'on #update' do
+      subject do
+        stub_dribbble :get, '/buckets/2754', DribbbleAPI::BucketSuccess
+        stub_dribbble :delete, '/buckets/2754', DribbbleAPI::BucketDeleted
+        Dribbble::Bucket.delete 'valid_token', 2754
+      end
+
+      it 'return true' do
+        expect(subject).to eq(true)
       end
     end
 
