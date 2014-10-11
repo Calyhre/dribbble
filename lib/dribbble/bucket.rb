@@ -10,7 +10,7 @@ module Dribbble
       Dribbble::Shot.batch_new token, get("/bucket/#{id}/shots", attrs)
     end
 
-    def self.required_fields
+    def self.available_fields
       %i(name description)
     end
   end

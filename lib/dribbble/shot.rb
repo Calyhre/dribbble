@@ -13,7 +13,7 @@ module Dribbble
       batch_new token, get('/shots', attrs)
     end
 
-    def self.required_fields
+    def self.available_fields
       %i(title image description tags team_id rebound_source_id)
     end
 

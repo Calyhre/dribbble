@@ -4,7 +4,7 @@ module Dribbble
       def create(token, attrs)
         @token = token
         res = post "/#{pluralize_name}" do |payload|
-          required_fields.each { |f| payload[f] = attrs[f] }
+          available_fields.each { |f| payload[f] = attrs[f] }
         end
         after_create(res)
       end
@@ -15,7 +15,7 @@ module Dribbble
       end
 
       # Need to be redeclared in the model
-      def required_fields
+      def available_fields
         fail "You need to redeclare this methods in your model"
       end
 
