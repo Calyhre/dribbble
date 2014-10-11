@@ -1,10 +1,12 @@
 require 'dribbble/utils/findable'
 require 'dribbble/utils/creatable'
+require 'dribbble/utils/updatable'
 
 module Dribbble
   class Bucket < Dribbble::Base
     include Dribbble::Utils::Findable
     include Dribbble::Utils::Creatable
+    include Dribbble::Utils::Updatable
 
     def shots(attrs = {})
       Dribbble::Shot.batch_new token, get("/bucket/#{id}/shots", attrs)

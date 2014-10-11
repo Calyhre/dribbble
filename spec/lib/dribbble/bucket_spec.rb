@@ -16,6 +16,21 @@ describe Dribbble::Bucket do
       end
     end
 
+    describe 'on #update' do
+      subject do
+        stub_dribbble :put, '/buckets/2754', DribbbleAPI::BucketUpdated
+        new_bucket = {
+          name: 'Bucket title',
+          description: 'Bucket description'
+        }
+        @bucket.update new_bucket
+      end
+
+      it 'update bucket' do
+        expect(subject.name).to eq('Bucket title')
+      end
+    end
+
     describe 'on #shots' do
       subject do
         stub_dribbble :get, '/bucket/2754/shots', DribbbleAPI::ShotsSuccess
@@ -35,13 +50,29 @@ describe Dribbble::Bucket do
         stub_dribbble :post, '/buckets', DribbbleAPI::BucketCreated
         bucket = {
           name: 'Bucket title',
-          desciption: 'Bucket description'
+          description: 'Bucket description'
         }
         Dribbble::Bucket.create 'valid_token', bucket
       end
 
       it 'create the shot' do
         expect(subject).to be_a Dribbble::Bucket
+      end
+    end
+
+    describe 'on #update' do
+      subject do
+        stub_dribbble :get, '/buckets/2754', DribbbleAPI::BucketSuccess
+        stub_dribbble :put, '/buckets/2754', DribbbleAPI::BucketUpdated
+        bucket = {
+          name: 'Bucket title',
+          description: 'Bucket description'
+        }
+        Dribbble::Bucket.update 'valid_token', 2754, bucket
+      end
+
+      it 'update bucket' do
+        expect(subject.name).to eq('Bucket title')
       end
     end
 

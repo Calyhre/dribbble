@@ -102,6 +102,9 @@ module DribbbleAPI
   class BucketCreated < Created
   end
 
+  class BucketUpdated < Updated
+  end
+
   class BucketsSuccess < Found
   end
 
