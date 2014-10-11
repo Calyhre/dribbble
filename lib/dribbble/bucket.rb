@@ -3,8 +3,8 @@ require 'dribbble/utils/creatable'
 
 module Dribbble
   class Bucket < Dribbble::Base
-    extend Dribbble::Utils::Findable
-    extend Dribbble::Utils::Creatable
+    include Dribbble::Utils::Findable
+    include Dribbble::Utils::Creatable
 
     def shots(attrs = {})
       Dribbble::Shot.batch_new token, get("/bucket/#{id}/shots", attrs)

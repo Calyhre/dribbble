@@ -6,7 +6,7 @@ require 'dribbble/team'
 
 module Dribbble
   class User < Dribbble::Base
-    extend Dribbble::Utils::Findable
+    include Dribbble::Utils::Findable
 
     def buckets(attrs = {})
       Dribbble::Bucket.batch_new token, get("/users/#{id}/buckets", attrs)

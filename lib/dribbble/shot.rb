@@ -5,8 +5,8 @@ require 'dribbble/comment'
 
 module Dribbble
   class Shot < Dribbble::Base
-    extend Dribbble::Utils::Findable
-    extend Dribbble::Utils::Creatable
+    include Dribbble::Utils::Findable
+    include Dribbble::Utils::Creatable
 
     def self.all(token, attrs = {})
       @token = token
