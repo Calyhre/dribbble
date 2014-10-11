@@ -51,6 +51,9 @@ module DribbbleAPI
     end
   end
 
+  class Updated < Found
+  end
+
   class Created < Base
     def status_code
       201

@@ -12,7 +12,7 @@ module Dribbble
       @raw = json.is_a?(Hash) ? json : JSON.parse(json)
 
       @raw.each do |k, v|
-        define_singleton_method(k) { v }
+        define_singleton_method(k) { @raw[k] }
       end
     end
 
