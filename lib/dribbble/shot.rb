@@ -4,6 +4,7 @@ require 'dribbble/utils/updatable'
 require 'dribbble/utils/deletable'
 require 'dribbble/attachment'
 require 'dribbble/comment'
+require 'dribbble/like'
 
 module Dribbble
   class Shot < Dribbble::Base

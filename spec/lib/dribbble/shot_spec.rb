@@ -107,7 +107,8 @@ describe Dribbble::Shot do
       end
 
       it 'return a user' do
-        expect(subject.first).to be_a Dribbble::User
+        expect(subject.first).to be_a Dribbble::Like
+        expect(subject.first.user).to be_a Dribbble::User
       end
     end
 
