@@ -4,14 +4,14 @@ module Dribbble
       module ClassMethods
         def create(token, attrs)
           @token = token
-          res = html_post "/#{pluralize_name}" do |payload|
+          res = html_post "/#{api_endpoint}" do |payload|
             available_fields.each { |f| payload[f] = attrs[f] }
           end
           after_create(res)
         end
 
         # Need to be override if pluralize isn't that naive
-        def pluralize_name
+        def api_endpoint
           "#{name.split('::').last.downcase}s"
         end
 
