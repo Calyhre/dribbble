@@ -43,7 +43,7 @@ describe Dribbble::Shot do
     end
 
     describe 'on #attachments' do
-      describe 'get all' do
+      describe 'all' do
         subject do
           stub_dribbble :get, '/shots/471756/attachments', DribbbleAPI::AttachmentsSuccess
           @shot.attachments
@@ -54,7 +54,7 @@ describe Dribbble::Shot do
         end
       end
 
-      describe 'create one' do
+      describe 'create' do
         subject do
           stub_dribbble :post, '/shots/471756/attachments', DribbbleAPI::Accepted
           @shot.create_attachment
@@ -62,6 +62,18 @@ describe Dribbble::Shot do
 
         it 'works' do
           expect(subject).to be_truthy
+        end
+      end
+
+      describe 'find' do
+        subject do
+          stub_dribbble :get, '/shots/471756/attachments/206165', DribbbleAPI::AttachmentSuccess
+          @shot.find_attachment 206_165
+        end
+
+        it 'return an attachment' do
+          expect(subject).to be_a Dribbble::Attachment
+          expect(subject.id).to eq(206_165)
         end
       end
     end

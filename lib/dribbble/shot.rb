@@ -38,6 +38,10 @@ module Dribbble
       res.code == 202 ? true : false
     end
 
+    def find_attachment(attachment_id)
+      Dribbble::Attachment.new token, html_get("/shots/#{id}/attachments/#{attachment_id}")
+    end
+
     def buckets(attrs = {})
       Dribbble::Bucket.batch_new token, html_get("/shots/#{id}/buckets", attrs)
     end

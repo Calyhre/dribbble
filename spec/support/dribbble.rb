@@ -90,6 +90,9 @@ module DribbbleAPI
   class AttachmentsSuccess < Found
   end
 
+  class AttachmentSuccess < Found
+  end
+
   class CommentsSuccess < Found
   end
 
