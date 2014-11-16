@@ -7,6 +7,14 @@ module Dribbble
       per_page: 100
     }
 
+    def class_name
+      @_class_name ||= respond_to?(:name) ? name.split('::').last.downcase : self.class.name.split('::').last.downcase
+    end
+
+    def pluralized_class_name
+      @_pluralized_class_name ||= "#{class_name}s"
+    end
+
     def full_url(path, attrs = {})
       "#{Dribbble::API_URI}#{path}?#{URI.encode_www_form attrs}"
     end

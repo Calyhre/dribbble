@@ -1,3 +1,4 @@
+require 'dribbble/utils/has_children'
 require 'dribbble/utils/findable'
 require 'dribbble/utils/creatable'
 require 'dribbble/utils/updatable'
@@ -8,10 +9,13 @@ require 'dribbble/like'
 
 module Dribbble
   class Shot < Dribbble::Base
+    include Dribbble::Utils::HasChildren
     include Dribbble::Utils::Findable
     include Dribbble::Utils::Creatable
     include Dribbble::Utils::Updatable
     include Dribbble::Utils::Deletable
+
+    has_many :attachments, :buckets, :comments, :likes, :projects
 
     def self.all(token, attrs = {})
       @token = token
@@ -26,10 +30,6 @@ module Dribbble
       res.code == 202 ? true : false
     end
 
-    def attachments(attrs = {})
-      Dribbble::Attachment.batch_new token, html_get("/shots/#{id}/attachments", attrs)
-    end
-
     def create_attachment(attrs = {})
       res = html_post "/shots/#{id}/attachments" do |payload|
         Dribbble::Attachment.available_fields.each do |field|
@@ -41,18 +41,6 @@ module Dribbble
 
     def find_attachment(attachment_id)
       Dribbble::Attachment.new token, html_get("/shots/#{id}/attachments/#{attachment_id}")
-    end
-
-    def buckets(attrs = {})
-      Dribbble::Bucket.batch_new token, html_get("/shots/#{id}/buckets", attrs)
-    end
-
-    def comments(attrs = {})
-      Dribbble::Comment.batch_new token, html_get("/shots/#{id}/comments", attrs)
-    end
-
-    def likes(attrs = {})
-      Dribbble::User.batch_new token, html_get("/shots/#{id}/likes", attrs), 'user'
     end
 
     def like?
@@ -70,10 +58,6 @@ module Dribbble
     def unlike!
       res = html_delete "/shots/#{id}/like"
       res.code == 204 ? true : false
-    end
-
-    def projects(attrs = {})
-      Dribbble::Project.batch_new token, html_get("/shots/#{id}/projects", attrs)
     end
 
     def rebounds(attrs = {})
