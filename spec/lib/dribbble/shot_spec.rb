@@ -43,13 +43,26 @@ describe Dribbble::Shot do
     end
 
     describe 'on #attachments' do
-      subject do
-        stub_dribbble :get, '/shots/471756/attachments', DribbbleAPI::AttachmentsSuccess
-        @shot.attachments
+      describe 'get all' do
+        subject do
+          stub_dribbble :get, '/shots/471756/attachments', DribbbleAPI::AttachmentsSuccess
+          @shot.attachments
+        end
+
+        it 'return a shot' do
+          expect(subject.first).to be_a Dribbble::Attachment
+        end
       end
 
-      it 'return a shot' do
-        expect(subject.first).to be_a Dribbble::Attachment
+      describe 'create one' do
+        subject do
+          stub_dribbble :post, '/shots/471756/attachments', DribbbleAPI::Accepted
+          @shot.create_attachment
+        end
+
+        it 'works' do
+          expect(subject).to be_truthy
+        end
       end
     end
 

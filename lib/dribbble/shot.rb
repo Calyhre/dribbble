@@ -29,6 +29,15 @@ module Dribbble
       Dribbble::Attachment.batch_new token, html_get("/shots/#{id}/attachments", attrs)
     end
 
+    def create_attachment(attrs = {})
+      res = html_post "/shots/#{id}/attachments" do |payload|
+        Dribbble::Attachment.available_fields.each do |field|
+          payload[field] = attrs[field]
+        end
+      end
+      res.code == 202 ? true : false
+    end
+
     def buckets(attrs = {})
       Dribbble::Bucket.batch_new token, html_get("/shots/#{id}/buckets", attrs)
     end
