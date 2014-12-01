@@ -1,4 +1,3 @@
-require 'dribbble/utils/has_children'
 require 'dribbble/utils/findable'
 require 'dribbble/utils/creatable'
 require 'dribbble/utils/updatable'
@@ -9,13 +8,13 @@ require 'dribbble/like'
 
 module Dribbble
   class Shot < Dribbble::Base
-    include Dribbble::Utils::HasChildren
     include Dribbble::Utils::Findable
     include Dribbble::Utils::Creatable
     include Dribbble::Utils::Updatable
     include Dribbble::Utils::Deletable
 
     has_many :attachments, :buckets, :comments, :likes, :projects
+    has_many :rebounds, as: Dribbble::Shot
 
     def self.all(token, attrs = {})
       @token = token

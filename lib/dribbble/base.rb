@@ -1,9 +1,12 @@
 require 'dribbble/utils'
+require 'dribbble/utils/has_children'
 
 module Dribbble
   class Base
     include Dribbble::Utils
     extend Dribbble::Utils
+
+    include Dribbble::Utils::HasChildren
 
     attr_reader :token
 
