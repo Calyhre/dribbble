@@ -195,7 +195,8 @@ describe Dribbble::Shot do
       end
 
       it 'create the shot' do
-        expect(subject).to eq(true)
+        expect(subject).to be_truthy
+        expect(subject).to eq('471756')
       end
     end
 

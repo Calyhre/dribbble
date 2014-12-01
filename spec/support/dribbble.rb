@@ -37,11 +37,16 @@ module DribbbleAPI
     def json_response
       content_type :json
       status status_code
+      headers response_headers
       file_name = "#{File.dirname(__FILE__)}/fixtures/#{json_file_name}.json"
 
       return {}.to_json unless File.exist? file_name
 
       File.open(file_name, 'rb')
+    end
+
+    def response_headers
+      {}
     end
   end
 
@@ -151,6 +156,11 @@ module DribbbleAPI
   end
 
   class ShotAccepted < Accepted
+    def response_headers
+      {
+        'Location' => 'https://api.dribbble.com/v1/shots/471756'
+      }
+    end
   end
 
   class ShotLikeSuccess < Found

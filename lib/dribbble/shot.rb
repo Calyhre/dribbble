@@ -26,7 +26,7 @@ module Dribbble
     end
 
     def self.after_create(res)
-      res.code == 202 ? true : false
+      res.code == 202 ? res.headers[:location].split('/').last : false
     end
 
     def create_attachment(attrs = {})
