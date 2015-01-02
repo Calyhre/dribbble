@@ -29,24 +29,6 @@ module Dribbble
       res.code == 202 ? res.headers[:location].split('/').last : false
     end
 
-    def create_attachment(attrs = {})
-      res = html_post "/shots/#{id}/attachments" do |payload|
-        Dribbble::Attachment.available_fields.each do |field|
-          payload[field] = attrs[field]
-        end
-      end
-      res.code == 202 ? true : false
-    end
-
-    def find_attachment(attachment_id)
-      Dribbble::Attachment.new token, html_get("/shots/#{id}/attachments/#{attachment_id}")
-    end
-
-    def delete_attachment(attachment_id)
-      res = html_delete "/shots/#{id}/attachments/#{attachment_id}"
-      res.code == 204 ? true : false
-    end
-
     def like?
       html_get "/shots/#{id}/like"
       true
