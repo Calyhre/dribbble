@@ -76,6 +76,17 @@ describe Dribbble::Shot do
           expect(subject.id).to eq(206_165)
         end
       end
+
+      describe 'delete' do
+        subject do
+          stub_dribbble :delete, '/shots/471756/attachments/206165', DribbbleAPI::AttachmentDeleted
+          @shot.delete_attachment 206_165
+        end
+
+        it 'return true' do
+          expect(subject).to eq(true)
+        end
+      end
     end
 
     describe 'on #buckets' do

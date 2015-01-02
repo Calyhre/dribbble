@@ -98,6 +98,9 @@ module DribbbleAPI
   class AttachmentSuccess < Found
   end
 
+  class AttachmentDeleted < Deleted
+  end
+
   class CommentsSuccess < Found
   end
 

@@ -42,6 +42,11 @@ module Dribbble
       Dribbble::Attachment.new token, html_get("/shots/#{id}/attachments/#{attachment_id}")
     end
 
+    def delete_attachment(attachment_id)
+      res = html_delete "/shots/#{id}/attachments/#{attachment_id}"
+      res.code == 204 ? true : false
+    end
+
     def like?
       html_get "/shots/#{id}/like"
       true
