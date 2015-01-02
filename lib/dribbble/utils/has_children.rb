@@ -32,7 +32,24 @@ module Dribbble
                 payload[field] = attrs[field]
               end
             end
-            res.code == 202 ? true : false
+            case res.code
+            when 202
+              return true
+            when 201
+              return klass.new token, res
+            else
+              return false
+            end
+          end
+
+          define_method "update_#{singularized_field}" do |child_id, attrs = {}|
+            klass ||= Object.const_get "Dribbble::#{__method__[0...-1].capitalize}"
+            res = html_put "/#{pluralized_class_name}/#{id}/#{klass.pluralized_class_name}/#{child_id}" do |payload|
+              klass.available_fields.each do |field|
+                payload[field] = attrs[field]
+              end
+            end
+            klass.new token, res
           end
 
           define_method "delete_#{singularized_field}" do |child_id|

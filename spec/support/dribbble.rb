@@ -104,6 +104,18 @@ module DribbbleAPI
   class CommentsSuccess < Found
   end
 
+  class CommentSuccess < Found
+  end
+
+  class CommentCreated < Created
+  end
+
+  class CommentUpdated < Updated
+  end
+
+  class CommentDeleted < Deleted
+  end
+
   class CurrentUserSuccess < Found
   end
 

@@ -61,7 +61,7 @@ describe Dribbble::Shot do
         end
 
         it 'works' do
-          expect(subject).to be_truthy
+          expect(subject).to eq(true)
         end
       end
 
@@ -101,13 +101,62 @@ describe Dribbble::Shot do
     end
 
     describe 'on #comments' do
-      subject do
-        stub_dribbble :get, '/shots/471756/comments', DribbbleAPI::CommentsSuccess
-        @shot.comments
+      describe 'all' do
+        subject do
+          stub_dribbble :get, '/shots/471756/comments', DribbbleAPI::CommentsSuccess
+          @shot.comments
+        end
+
+        it 'return comments' do
+          expect(subject.first).to be_a Dribbble::Comment
+        end
       end
 
-      it 'return a shot' do
-        expect(subject.first).to be_a Dribbble::Comment
+      describe 'create' do
+        subject do
+          stub_dribbble :post, '/shots/471756/comments', DribbbleAPI::CommentCreated
+          @shot.create_comment body: "<p>Could he somehow make the shape of an \"S\" with his arms? I feel like i see potential for some hidden shapes in here...</p>\n\n<p>Looks fun!\n</p>"
+        end
+
+        it 'return a comment' do
+          expect(subject).to be_a Dribbble::Comment
+          expect(subject.body).to eq("<p>Could he somehow make the shape of an \"S\" with his arms? I feel like i see potential for some hidden shapes in here...</p>\n\n<p>Looks fun!\n</p>")
+        end
+      end
+
+      describe 'find' do
+        subject do
+          stub_dribbble :get, '/shots/471756/comments/1145736', DribbbleAPI::CommentSuccess
+          @shot.find_comment 1_145_736
+        end
+
+        it 'return a comment' do
+          expect(subject).to be_a Dribbble::Comment
+          expect(subject.id).to eq(1_145_736)
+        end
+      end
+
+      describe 'update' do
+        subject do
+          stub_dribbble :put, '/shots/471756/comments/1145736', DribbbleAPI::CommentUpdated
+          @shot.update_comment 1_145_736, body: "New body"
+        end
+
+        it 'return a comment' do
+          expect(subject).to be_a Dribbble::Comment
+          expect(subject.body).to eq("New body")
+        end
+      end
+
+      describe 'delete' do
+        subject do
+          stub_dribbble :delete, '/shots/471756/comments/1145736', DribbbleAPI::CommentDeleted
+          @shot.delete_comment 1_145_736
+        end
+
+        it 'return true' do
+          expect(subject).to eq(true)
+        end
       end
     end
 
