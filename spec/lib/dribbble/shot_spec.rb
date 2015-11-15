@@ -55,13 +55,26 @@ describe Dribbble::Shot do
       end
 
       describe 'create' do
-        subject do
-          stub_dribbble :post, '/shots/471756/attachments', DribbbleAPI::Accepted
-          @shot.create_attachment
+        describe 'when shot is accepted' do
+          subject do
+            stub_dribbble :post, '/shots/471756/attachments', DribbbleAPI::Accepted
+            @shot.create_attachment
+          end
+
+          it 'works' do
+            expect(subject).to eq(true)
+          end
         end
 
-        it 'works' do
-          expect(subject).to eq(true)
+        describe 'with a 422 error' do
+          subject do
+            stub_dribbble :post, '/shots/471756/attachments', DribbbleAPI::Unprocessable
+            @shot.create_attachment
+          end
+
+          it 'works' do
+            expect { subject }.to raise_error(Dribbble::Error::Unprocessable)
+          end
         end
       end
 

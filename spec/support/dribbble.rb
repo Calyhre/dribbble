@@ -92,6 +92,27 @@ module DribbbleAPI
     end
   end
 
+  class Unprocessable < Base
+    def status_code
+      422
+    end
+
+    protected
+
+    def json_response
+      content_type :json
+      status status_code
+      headers response_headers
+
+      {
+        message: "Validation failed.",
+        errors: [
+          { attribute: "user", message: "reached the daily limit of 5 shots" }
+        ]
+      }.to_json
+    end
+  end
+
   class AttachmentsSuccess < Found
   end
 
