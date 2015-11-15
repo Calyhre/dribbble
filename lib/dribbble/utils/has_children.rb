@@ -17,17 +17,20 @@ module Dribbble
 
           define_method field do |attrs = {}|
             klass ||= Object.const_get "Dribbble::#{__method__[0...-1].capitalize}"
-            klass.batch_new token, html_get("/#{pluralized_class_name}/#{id}/#{klass.pluralized_class_name}", attrs)
+            url = "/#{pluralized_class_name}/#{id}/#{klass.pluralized_class_name}"
+            klass.batch_new token, html_get(url, attrs), nil, url
           end
 
           define_method "find_#{singularized_field}" do |child_id|
             klass ||= Object.const_get "Dribbble::#{__method__[0...-1].capitalize}"
-            klass.new token, html_get("/#{pluralized_class_name}/#{id}/#{klass.pluralized_class_name}/#{child_id}")
+            url = "/#{pluralized_class_name}/#{id}/#{klass.pluralized_class_name}/#{child_id}"
+            klass.new token, html_get(url), url
           end
 
           define_method "create_#{singularized_field}" do |attrs = {}|
             klass ||= Object.const_get "Dribbble::#{__method__[0...-1].capitalize}"
-            res = html_post "/#{pluralized_class_name}/#{id}/#{klass.pluralized_class_name}" do |payload|
+            url = "/#{pluralized_class_name}/#{id}/#{klass.pluralized_class_name}"
+            res = html_post url do |payload|
               klass.available_fields.each do |field|
                 payload[field] = attrs[field]
               end
@@ -36,7 +39,7 @@ module Dribbble
             when 202
               return true
             when 201
-              return klass.new token, res
+              return klass.new token, res, url
             else
               return false
             end
@@ -44,12 +47,13 @@ module Dribbble
 
           define_method "update_#{singularized_field}" do |child_id, attrs = {}|
             klass ||= Object.const_get "Dribbble::#{__method__[0...-1].capitalize}"
-            res = html_put "/#{pluralized_class_name}/#{id}/#{klass.pluralized_class_name}/#{child_id}" do |payload|
+            url = "/#{pluralized_class_name}/#{id}/#{klass.pluralized_class_name}/#{child_id}"
+            res = html_put url do |payload|
               klass.available_fields.each do |field|
                 payload[field] = attrs[field]
               end
             end
-            klass.new token, res
+            klass.new token, res, url
           end
 
           define_method "delete_#{singularized_field}" do |child_id|

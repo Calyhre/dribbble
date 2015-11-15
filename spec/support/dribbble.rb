@@ -137,6 +137,21 @@ module DribbbleAPI
   class CommentDeleted < Deleted
   end
 
+  class CommentLikesSuccess < Found
+  end
+
+  class CommentLikeSuccess < Found
+  end
+
+  class CommentLikeNotFound < NotFound
+  end
+
+  class CommentLikeCreated < Created
+  end
+
+  class CommentLikeDeleted < Deleted
+  end
+
   class CurrentUserSuccess < Found
   end
 

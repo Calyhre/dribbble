@@ -8,24 +8,26 @@ module Dribbble
 
     include Dribbble::Utils::HasChildren
 
-    attr_reader :token
+    attr_reader :token, :dribbble_url
 
-    def initialize(token, json)
+    def initialize(token, json, dribbble_url = '')
       @token = token
+      @dribbble_url = dribbble_url
+
       @raw = json.is_a?(Hash) ? json : JSON.parse(json)
 
-      @raw.each do |k, v|
+      @raw.each do |k, _v|
         define_singleton_method(k) { @raw[k] } unless self.respond_to?(k)
       end
     end
 
-    def self.batch_new(token, json, kind = nil)
+    def self.batch_new(token, json, kind = nil, url = '')
       json = JSON.parse json unless json.is_a? Hash
       json.map do |obj|
         if kind
-          new token, obj[kind]
+          new token, obj[kind], url
         else
-          new token, obj
+          new token, obj, url
         end
       end
     end
