@@ -8,7 +8,7 @@ module Dribbble
     }
 
     def class_name
-      @_class_name ||= respond_to?(:name) ? name.split('::').last.downcase : self.class.name.split('::').last.downcase
+      @_class_name ||= self.is_a?(Class) ? name.split('::').last.downcase : self.class.name.split('::').last.downcase
     end
 
     def pluralized_class_name

@@ -1,8 +1,4 @@
 require 'dribbble/utils/findable'
-require 'dribbble/bucket'
-require 'dribbble/project'
-require 'dribbble/shot'
-require 'dribbble/team'
 
 module Dribbble
   class User < Dribbble::Base

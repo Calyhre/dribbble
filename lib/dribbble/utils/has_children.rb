@@ -17,19 +17,19 @@ module Dribbble
 
           define_method field do |attrs = {}|
             klass ||= Object.const_get "Dribbble::#{__method__[0...-1].capitalize}"
-            url = "/#{pluralized_class_name}/#{id}/#{klass.pluralized_class_name}"
+            url = "/#{pluralized_class_name}/#{id}/#{field}"
             klass.batch_new token, html_get(url, attrs), nil, url
           end
 
           define_method "find_#{singularized_field}" do |child_id|
             klass ||= Object.const_get "Dribbble::#{__method__[0...-1].capitalize}"
-            url = "/#{pluralized_class_name}/#{id}/#{klass.pluralized_class_name}/#{child_id}"
+            url = "/#{pluralized_class_name}/#{id}/#{field}/#{child_id}"
             klass.new token, html_get(url), url
           end
 
           define_method "create_#{singularized_field}" do |attrs = {}|
             klass ||= Object.const_get "Dribbble::#{__method__[0...-1].capitalize}"
-            url = "/#{pluralized_class_name}/#{id}/#{klass.pluralized_class_name}"
+            url = "/#{pluralized_class_name}/#{id}/#{field}"
             res = html_post url do |payload|
               klass.available_fields.each do |field|
                 payload[field] = attrs[field]

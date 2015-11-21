@@ -237,4 +237,7 @@ module DribbbleAPI
 
   class UserSuccess < Found
   end
+
+  class UsersSuccess < Found
+  end
 end
