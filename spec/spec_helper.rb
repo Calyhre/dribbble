@@ -5,10 +5,18 @@ Dir[File.dirname(__FILE__) + '/support/**/*.rb'].each { |f| require f }
 
 # WebMock.disable_net_connect! allow_localhost: true, allow: 'codeclimate.com'
 
-def stub_dribbble_with(response_class)
-  stub_request(:any, /api\.dribbble\.com/).to_rack(response_class)
+RSpec.configure do |config|
+  config.before :all do
+    WebMock.reset!
+  end
+end
+
+def stub_dribbble(method, path, response_class)
+  url = /api.dribbble.com\/v1#{Regexp.escape path}(\?.*)?$/
+  stub_request(method, url).to_rack(response_class)
 end
 
 def data_from_json(json_name)
-  JSON.parse File.open(File.dirname(__FILE__) + "/support/fixtures/#{json_name}", 'rb').read
+  file_name = "#{File.dirname(__FILE__)}/support/fixtures/#{json_name}"
+  JSON.parse File.open(file_name, 'rb').read
 end

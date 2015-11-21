@@ -1,51 +1,44 @@
 require 'dribbble/utils'
+require 'dribbble/utils/has_children'
 
 module Dribbble
   class Base
     include Dribbble::Utils
     extend Dribbble::Utils
 
-    attr_reader :token
+    include Dribbble::Utils::HasChildren
 
-    def initialize(token, json)
+    attr_reader :token, :dribbble_url
+
+    def initialize(token, json, dribbble_url = '')
       @token = token
-      @raw = json.is_a?(Hash) ? json : JSON.parse(json)
 
-      @raw.each do |k, v|
-        define_singleton_method(k) { v }
+      @raw = json.is_a?(Hash) ? json : JSON.parse(json)
+      @dribbble_url = build_dribbble_url(@raw['id'].to_s, dribbble_url)
+
+      @raw.each do |k, _v|
+        define_singleton_method(k) { @raw[k] } unless self.respond_to?(k)
       end
     end
 
-
-    def self.find(token, id)
-      @token = token
-      @client = Dribbble::Client.new token: @token
-    end
-
-    def self.batch_new(token, json)
+    def self.batch_new(token, json, kind = nil, url = '')
       json = JSON.parse json unless json.is_a? Hash
       json.map do |obj|
-        new token, obj
+        if kind
+          new token, obj[kind], url
+        else
+          new token, obj, url
+        end
       end
     end
 
-    def get_bucket(id)
-      Dribbble::Bucket.new @token, get("/buckets/#{id}")
-    end
+    private
 
-    def get_project(id)
-      Dribbble::Project.new @token, get("/projects/#{id}")
-    end
-
-    def get_shot(id)
-      Dribbble::Shot.new @token, get("/shots/#{id}")
-    end
-
-    def get_user(id = nil)
-      if id
-        Dribbble::User.new @token, get("/users/#{id}")
+    def build_dribbble_url(id, dribbble_url)
+      if dribbble_url.end_with?(id)
+        dribbble_url
       else
-        Dribbble::User.new @token, get('/user')
+        "#{dribbble_url}/#{id}"
       end
     end
   end

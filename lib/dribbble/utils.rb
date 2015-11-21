@@ -7,9 +7,20 @@ module Dribbble
       per_page: 100
     }
 
+    def class_name
+      @_class_name ||= self.is_a?(Class) ? name.split('::').last.downcase : self.class.name.split('::').last.downcase
+    end
+
+    def pluralized_class_name
+      @_pluralized_class_name ||= "#{class_name}s"
+    end
+
     def full_url(path, attrs = {})
-      query = URI.encode_www_form DEFAULT_ATTRIBUTES.merge(attrs)
-      "#{Dribbble::API_URI}#{path}?#{query}"
+      "#{Dribbble::API_URI}#{path}?#{URI.encode_www_form attrs}"
+    end
+
+    def full_url_with_default_params(path, attrs = {})
+      full_url path, DEFAULT_ATTRIBUTES.merge(attrs)
     end
 
     def headers
@@ -20,20 +31,40 @@ module Dribbble
       end
     end
 
-    def get(path, attrs = {})
-      RestClient.get full_url(path, attrs), headers
+    def html_get(path, attrs = {})
+      res = RestClient.get full_url_with_default_params(path, attrs), headers
+      res.force_encoding('UTF-8')
     rescue RestClient::Unauthorized => e
       raise Dribbble::Error::Unauthorized, e
     end
 
-    def post(path, attrs = {})
+    def html_post(path, attrs = {})
       payload = {}
-      yield payload
-      RestClient.post full_url(path, attrs), payload, headers
+      yield payload if block_given?
+      res = RestClient.post full_url(path, attrs), payload, headers
+      res.force_encoding('UTF-8')
     rescue RestClient::Unauthorized => e
       raise Dribbble::Error::Unauthorized, e
     rescue RestClient::UnprocessableEntity => e
       raise Dribbble::Error::Unprocessable, e
+    end
+
+    def html_put(path, attrs = {})
+      payload = {}
+      yield payload if block_given?
+      res = RestClient.put full_url(path, attrs), payload, headers
+      res.force_encoding('UTF-8')
+    rescue RestClient::Unauthorized => e
+      raise Dribbble::Error::Unauthorized, e
+    rescue RestClient::UnprocessableEntity => e
+      raise Dribbble::Error::Unprocessable, e
+    end
+
+    def html_delete(path, attrs = {})
+      res = RestClient.delete full_url(path, attrs), headers
+      res.force_encoding('UTF-8')
+    rescue RestClient::Unauthorized => e
+      raise Dribbble::Error::Unauthorized, e
     end
   end
 end
