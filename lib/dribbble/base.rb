@@ -41,16 +41,19 @@ module Dribbble
     def get_buckets(attrs = {})
       Dribbble::Bucket.batch_new token, html_get('/user/buckets', attrs)
     end
+    alias_method :buckets, :get_buckets
 
     # Get authenticated user's followers
     def get_followers(attrs = {})
       Dribbble::User.batch_new token, html_get('/user/followers', attrs)
     end
+    alias_method :followers, :get_followers
 
     # Get authenticated user's likes
     def get_likes(attrs = {})
       Dribbble::Shot.batch_new token, html_get('/user/likes', attrs), 'shot'
     end
+    alias_method :likes, :get_likes
 
     # Get a single project
     def get_project(id)
@@ -61,6 +64,7 @@ module Dribbble
     def get_projects(attrs = {})
       Dribbble::Project.batch_new token, html_get('/user/projects', attrs)
     end
+    alias_method :projects, :get_projects
 
     # Get a single Shot
     def get_shot(id)
@@ -71,17 +75,20 @@ module Dribbble
     def get_shots(attrs = {})
       Dribbble::Shot.batch_new token, html_get('/user/shots', attrs)
     end
+    alias_method :shots, :get_shots
 
     # Get authenticated user's followees shots
     # Limited to first 600 shots regardless of the pagination
     def get_following_shots(attrs = {})
       Dribbble::Shot.batch_new token, html_get('/user/following/shots', attrs)
     end
+    alias_method :following_shots, :get_following_shots
 
     # Get authenticated user's teams
     def get_teams(attrs = {})
       Dribbble::Team.batch_new token, html_get('/user/teams', attrs)
     end
+    alias_method :teams, :get_teams
 
     # Get a single User or the authenticated one
     def get_user(id = nil)
@@ -91,6 +98,7 @@ module Dribbble
         Dribbble::User.new @token, html_get('/user')
       end
     end
+    alias_method :user, :get_user
 
     private
 

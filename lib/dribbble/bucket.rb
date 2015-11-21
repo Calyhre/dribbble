@@ -10,9 +10,7 @@ module Dribbble
     include Dribbble::Utils::Updatable
     include Dribbble::Utils::Deletable
 
-    def shots(attrs = {})
-      Dribbble::Shot.batch_new token, html_get("/bucket/#{id}/shots", attrs)
-    end
+    has_many :shots
 
     def add_shot(shot)
       shot_id = shot.is_a?(Dribbble::Shot) ? shot.id : shot

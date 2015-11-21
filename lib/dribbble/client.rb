@@ -13,7 +13,8 @@ module Dribbble
   class Client < Dribbble::Base
     include Dribbble::Utils
 
-    def initialize(token: nil)
+    def initialize(token)
+      token = token.is_a?(Hash) ? token[:token] : token
       @token = token
       fail Dribbble::Error::MissingToken if @token.nil?
     end
