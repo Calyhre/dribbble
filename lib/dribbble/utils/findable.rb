@@ -3,9 +3,7 @@ module Dribbble
     module Findable
       module ClassMethods
         def find(token, id)
-          @token = token
-          @client = Dribbble::Client.new token: @token
-          @client.send "get_#{name.split('::').last.downcase}", id
+          new token, html_get("/#{pluralized_class_name}/#{id}")
         end
       end
 

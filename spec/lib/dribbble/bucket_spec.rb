@@ -44,7 +44,7 @@ describe Dribbble::Bucket do
 
     describe 'on #shots' do
       subject do
-        stub_dribbble :get, '/bucket/2754/shots', DribbbleAPI::ShotsSuccess
+        stub_dribbble :get, '/buckets/2754/shots', DribbbleAPI::ShotsSuccess
         @bucket.shots
       end
 
