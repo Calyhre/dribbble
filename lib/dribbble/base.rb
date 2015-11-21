@@ -12,9 +12,9 @@ module Dribbble
 
     def initialize(token, json, dribbble_url = '')
       @token = token
-      @dribbble_url = dribbble_url
 
       @raw = json.is_a?(Hash) ? json : JSON.parse(json)
+      @dribbble_url = build_dribbble_url(@raw['id'].to_s, dribbble_url)
 
       @raw.each do |k, _v|
         define_singleton_method(k) { @raw[k] } unless self.respond_to?(k)
@@ -89,6 +89,16 @@ module Dribbble
         Dribbble::User.new @token, html_get("/users/#{id}")
       else
         Dribbble::User.new @token, html_get('/user')
+      end
+    end
+
+    private
+
+    def build_dribbble_url(id, dribbble_url)
+      if dribbble_url.end_with?(id)
+        dribbble_url
+      else
+        "#{dribbble_url}/#{id}"
       end
     end
   end
