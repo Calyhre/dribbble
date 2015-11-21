@@ -5,7 +5,9 @@ rvm:
   - 2.0.0
   - 2.1.7
   - 2.2.3
-  - 2.3.0-preview1
+  - 2.3.0-dev
 
 matrix:
   fast_finish: true
+  allow_failures:
+    - rvm: 2.3.0-dev
