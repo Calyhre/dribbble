@@ -4,7 +4,7 @@ module Dribbble
       module ClassMethods
         def has_many(*fields)
           if fields[1].is_a? Hash
-            generate_methods fields[0], fields[1][:as]
+            generate_methods fields[0], fields[1][:as], fields[1][:key]
           else
             fields.each do |field|
               generate_methods field
@@ -12,13 +12,13 @@ module Dribbble
           end
         end
 
-        def generate_methods(field, klass = nil)
+        def generate_methods(field, klass = nil, key = nil)
           singularized_field = field[0...-1]
 
           define_method field do |attrs = {}|
             klass ||= Object.const_get "Dribbble::#{__method__[0...-1].capitalize}"
             url = "/#{pluralized_class_name}/#{id}/#{field}"
-            klass.batch_new token, html_get(url, attrs), nil, url
+            klass.batch_new token, html_get(url, attrs), key, url
           end
 
           define_method "find_#{singularized_field}" do |child_id|

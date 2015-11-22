@@ -4,17 +4,10 @@ module Dribbble
   class User < Dribbble::Base
     include Dribbble::Utils::Findable
 
-    def buckets(attrs = {})
-      Dribbble::Bucket.batch_new token, html_get("/users/#{id}/buckets", attrs)
-    end
-
-    def followers(attrs = {})
-      Dribbble::User.batch_new token, html_get("/users/#{id}/followers", attrs)
-    end
-
-    def following(attrs = {})
-      Dribbble::User.batch_new token, html_get("/users/#{id}/following", attrs), 'followee'
-    end
+    has_many :buckets, :projects, :shots, :teams
+    has_many :likes, as: Dribbble::Shot, key: 'shot'
+    has_many :followers, as: Dribbble::User, key: 'follower'
+    has_many :following, as: Dribbble::User, key: 'followee'
 
     def following?(other_user_id = nil)
       if other_user_id
@@ -35,22 +28,6 @@ module Dribbble
     def unfollow!
       res = html_delete "/users/#{id}/follow"
       res.code == 204 ? true : false
-    end
-
-    def likes(attrs = {})
-      Dribbble::Shot.batch_new token, html_get("/users/#{id}/likes", attrs), 'shot'
-    end
-
-    def projects(attrs = {})
-      Dribbble::Project.batch_new token, html_get("/users/#{id}/projects", attrs)
-    end
-
-    def shots(attrs = {})
-      Dribbble::Shot.batch_new token, html_get("/users/#{id}/shots", attrs)
-    end
-
-    def teams(attrs = {})
-      Dribbble::Team.batch_new token, html_get("/users/#{id}/teams", attrs)
     end
   end
 end

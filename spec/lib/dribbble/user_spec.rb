@@ -37,6 +37,7 @@ describe Dribbble::User do
       it 'responds with users' do
         expect(subject.size).to eq 1
         expect(subject.first).to be_a Dribbble::User
+        expect(subject.first.location).to eq 'Salem, MA'
       end
     end
 

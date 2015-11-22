@@ -1,8 +1,8 @@
 require 'dribbble/base'
+require 'dribbble/shot'
 require 'dribbble/user'
 require 'dribbble/bucket'
 require 'dribbble/project'
-require 'dribbble/shot'
 require 'dribbble/team'
 require 'dribbble/errors'
 
