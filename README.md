@@ -126,9 +126,10 @@ shot = Dribbble::Shot.find(token, 1971500)
 params = {
   title: 'A new shot',
   description: 'Shot description',
+  image: File.open('/path/to/image.png'),
   tags: %w(tag1 tag2),
   team_id: 1234,
-  rebound_source_id: 1234,
+  rebound_source_id: 1234
 }
 shot = Dribbble::Shot.create(token, params)
 ```
