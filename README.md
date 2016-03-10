@@ -5,7 +5,7 @@
 
 Calyhre/dribbble is an unofficial API wrapper ruby gem for [Dribbble.com's API](http://developer.dribbble.com/).
 
-[But, what it Dribbble?](https://dribbble.com/about)
+[But, what is Dribbble?](https://dribbble.com/about)
 > What are you working on? Dribbble is a community of designers answering that question each day. Web designers, graphic designers, illustrators, icon artists, typographers, logo designers, and other creative types share small screenshots (shots) that show their work, process, and current projects.
 
 ## Installation
