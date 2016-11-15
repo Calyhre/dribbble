@@ -12,7 +12,7 @@ Calyhre/dribbble is an unofficial API wrapper ruby gem for [Dribbble.com's API](
 
 ### Requirements
 
-* Ruby `~> 2.0`
+* Ruby `~> 2.2.5`, use `v1.0.4` for previous Ruby versions.
 
 ### In a Gemfile
 
