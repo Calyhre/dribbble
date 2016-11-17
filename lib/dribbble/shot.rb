@@ -22,7 +22,7 @@ module Dribbble
     end
 
     def self.available_fields
-      %i(title image description tags team_id rebound_source_id)
+      %i(title image description tags team_id rebound_source_id low_profile)
     end
 
     def self.after_create(res)
