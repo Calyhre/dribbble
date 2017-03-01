@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.test_files   = `git ls-files -- {test,spec,features}/*`.split("\n")
 
   s.required_ruby_version = ['>= 2.2.0', '< 2.5.0']
-  s.add_runtime_dependency 'rest-client', '~> 1.7'
+  s.add_runtime_dependency 'rest-client', '~> 2.0'
 
   s.add_development_dependency 'rake', '~> 10.3'
   s.add_development_dependency 'rspec', '~> 2.14'
