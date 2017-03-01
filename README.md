@@ -1,11 +1,10 @@
 # Dribbble API wrapper Gem
 
-[![Gem Version](https://badge.fury.io/rb/dribbble.svg)](http://rubygems.org/gems/dribbble)
-[![Build Status](https://travis-ci.org/Calyhre/dribbble.svg?branch=master)](https://travis-ci.org/Calyhre/dribbble)
+[![Gem Version]][On Rubygems] [![Build Status]][On Travis]
 
-Calyhre/dribbble is an unofficial API wrapper ruby gem for [Dribbble.com's API](http://developer.dribbble.com/).
+Calyhre/dribbble is an unofficial API wrapper ruby gem for [Dribbble.com's API].
 
-[But, what is Dribbble?](https://dribbble.com/about)
+[But, what is Dribbble?]
 > What are you working on? Dribbble is a community of designers answering that question each day. Web designers, graphic designers, illustrators, icon artists, typographers, logo designers, and other creative types share small screenshots (shots) that show their work, process, and current projects.
 
 ## Installation
@@ -420,8 +419,18 @@ user.shots page: 2, custom_param: 'My param'
 
 Feel free to help me make this gem awesome !
 
-[Contributors](https://github.com/Calyhre/dribbble/graphs/contributors) and [CONTRIBUTING](https://github.com/Calyhre/dribbble/blob/master/CONTRIBUTING.md)
+[Contributors] and [CONTRIBUTING]
 
 ## Licence
 
-Released under the MIT License. See the [LICENSE](https://github.com/Calyhre/dribbble/blob/master/LICENSE.md) file for further details.
+Released under the MIT License. See the [LICENSE] file for further details.
+
+[Gem Version]: https://badge.fury.io/rb/dribbble.svg
+[Build Status]: https://travis-ci.org/Calyhre/dribbble.svg?branch=master
+[On Rubygems]: http://rubygems.org/gems/dribbble
+[On Travis]: https://travis-ci.org/Calyhre/dribbble
+[Dribbble.com's API]: http://developer.dribbble.com/
+[But, what is Dribbble?]: https://dribbble.com/about
+[LICENSE]: LICENSE.md
+[Contributors]: https://github.com/Calyhre/dribbble/graphs/contributors
+[CONTRIBUTING]: CONTRIBUTING.md
