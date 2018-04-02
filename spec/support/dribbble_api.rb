@@ -229,9 +229,6 @@ module DribbbleAPI
   class ShotLikesSuccess < Found
   end
 
-  class ShotsSuccess < Found
-  end
-
   class TeamsSuccess < Found
   end
 

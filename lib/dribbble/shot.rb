@@ -16,11 +16,6 @@ module Dribbble
     has_many :attachments, :buckets, :comments, :likes, :projects
     has_many :rebounds, as: Dribbble::Shot
 
-    def self.all(token, attrs = {})
-      @token = token
-      batch_new token, html_get('/shots', attrs)
-    end
-
     def self.available_fields
       %i(title image description tags team_id rebound_source_id low_profile)
     end
