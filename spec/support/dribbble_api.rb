@@ -209,7 +209,7 @@ module DribbbleAPI
   class ShotAccepted < Accepted
     def response_headers
       {
-        'Location' => 'https://api.dribbble.com/v1/shots/471756'
+        'Location' => 'https://api.dribbble.com/v2/shots/471756'
       }
     end
   end
