@@ -4,10 +4,14 @@ module Dribbble
   class User < Dribbble::Base
     include Dribbble::Utils::Findable
 
-    has_many :buckets, :projects, :shots, :teams
+    has_many :buckets, :projects, :shots
     has_many :likes, as: Dribbble::Shot, key: 'shot'
     has_many :followers, as: Dribbble::User, key: 'follower'
     has_many :following, as: Dribbble::User, key: 'followee'
+
+    def teams
+      Dribbble::Team.batch_new token, @raw['teams']
+    end
 
     def following?(other_user_id = nil)
       if other_user_id

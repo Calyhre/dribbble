@@ -22,7 +22,7 @@ module Dribbble
     end
 
     def self.batch_new(token, json, kind = nil, url = '')
-      json = JSON.parse json unless json.is_a? Hash
+      json = JSON.parse json unless json.is_a?(Hash) || json.is_a?(Array)
       json.map do |obj|
         if kind
           new token, obj[kind], url
