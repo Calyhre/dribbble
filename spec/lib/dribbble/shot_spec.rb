@@ -44,18 +44,7 @@ describe Dribbble::Shot do
       end
     end
 
-    describe 'on #attachments' do
-      describe 'all' do
-        subject do
-          stub_dribbble :get, '/shots/471756/attachments', DribbbleAPI::AttachmentsSuccess
-          @shot.attachments
-        end
-
-        it 'return a shot' do
-          expect(subject.first).to be_a Dribbble::Attachment
-        end
-      end
-
+    skip 'on #attachments' do
       describe 'create' do
         describe 'when shot is accepted' do
           subject do
@@ -80,18 +69,6 @@ describe Dribbble::Shot do
         end
       end
 
-      describe 'find' do
-        subject do
-          stub_dribbble :get, '/shots/471756/attachments/206165', DribbbleAPI::AttachmentSuccess
-          @shot.find_attachment 206_165
-        end
-
-        it 'return an attachment' do
-          expect(subject).to be_a Dribbble::Attachment
-          expect(subject.id).to eq(206_165)
-        end
-      end
-
       describe 'delete' do
         subject do
           stub_dribbble :delete, '/shots/471756/attachments/206165', DribbbleAPI::AttachmentDeleted
@@ -101,157 +78,6 @@ describe Dribbble::Shot do
         it 'return true' do
           expect(subject).to eq(true)
         end
-      end
-    end
-
-    describe 'on #buckets' do
-      subject do
-        stub_dribbble :get, '/shots/471756/buckets', DribbbleAPI::BucketsSuccess
-        @shot.buckets
-      end
-
-      it 'return a shot' do
-        expect(subject.first).to be_a Dribbble::Bucket
-      end
-    end
-
-    describe 'on #comments' do
-      describe 'all' do
-        subject do
-          stub_dribbble :get, '/shots/471756/comments', DribbbleAPI::CommentsSuccess
-          @shot.comments
-        end
-
-        it 'return comments' do
-          expect(subject.first).to be_a Dribbble::Comment
-        end
-      end
-
-      describe 'create' do
-        subject do
-          stub_dribbble :post, '/shots/471756/comments', DribbbleAPI::CommentCreated
-          @shot.create_comment body: "<p>Could he somehow make the shape of an \"S\" with his arms? I feel like i see potential for some hidden shapes in here...</p>\n\n<p>Looks fun!\n</p>"
-        end
-
-        it 'return a comment' do
-          expect(subject).to be_a Dribbble::Comment
-          expect(subject.body).to eq("<p>Could he somehow make the shape of an \"S\" with his arms? I feel like i see potential for some hidden shapes in here...</p>\n\n<p>Looks fun!\n</p>")
-        end
-      end
-
-      describe 'find' do
-        subject do
-          stub_dribbble :get, '/shots/471756/comments/1145736', DribbbleAPI::CommentSuccess
-          @shot.find_comment 1_145_736
-        end
-
-        it 'return a comment' do
-          expect(subject).to be_a Dribbble::Comment
-          expect(subject.id).to eq(1_145_736)
-        end
-      end
-
-      describe 'update' do
-        subject do
-          stub_dribbble :put, '/shots/471756/comments/1145736', DribbbleAPI::CommentUpdated
-          @shot.update_comment 1_145_736, body: 'New body'
-        end
-
-        it 'return a comment' do
-          expect(subject).to be_a Dribbble::Comment
-          expect(subject.body).to eq('New body')
-        end
-      end
-
-      describe 'delete' do
-        subject do
-          stub_dribbble :delete, '/shots/471756/comments/1145736', DribbbleAPI::CommentDeleted
-          @shot.delete_comment 1_145_736
-        end
-
-        it 'return true' do
-          expect(subject).to eq(true)
-        end
-      end
-    end
-
-    describe 'on #likes' do
-      subject do
-        stub_dribbble :get, '/shots/471756/likes', DribbbleAPI::ShotLikesSuccess
-        @shot.likes
-      end
-
-      it 'return a user' do
-        expect(subject.first).to be_a Dribbble::Like
-        expect(subject.first.user).to be_a Dribbble::User
-      end
-    end
-
-    describe 'on #like?' do
-      describe 'on a not liked shot' do
-        subject do
-          stub_dribbble :get, '/shots/471756/like', DribbbleAPI::ShotLikeNotFound
-          @shot.like?
-        end
-
-        it 'return a user' do
-          expect(subject).to be_falsy
-        end
-      end
-
-      describe 'on a liked shot' do
-        subject do
-          stub_dribbble :get, '/shots/471756/like', DribbbleAPI::ShotLikeSuccess
-          @shot.like?
-        end
-
-        it 'return a user' do
-          expect(subject).to be_truthy
-        end
-      end
-    end
-
-    describe 'on #like!' do
-      subject do
-        stub_dribbble :post, '/shots/471756/like', DribbbleAPI::ShotLikeCreated
-        @shot.like!
-      end
-
-      it 'return true' do
-        expect(subject).to be_truthy
-      end
-    end
-
-    describe 'on #unlike!' do
-      subject do
-        stub_dribbble :delete, '/shots/471756/like', DribbbleAPI::ShotLikeDeleted
-        @shot.unlike!
-      end
-
-      it 'return true' do
-        expect(subject).to be_truthy
-      end
-    end
-
-    describe 'on #projects' do
-      subject do
-        stub_dribbble :get, '/shots/471756/projects', DribbbleAPI::ProjectsSuccess
-        @shot.projects
-      end
-
-      it 'return a list of project' do
-        expect(subject.first).to be_a Dribbble::Project
-      end
-    end
-
-    describe 'on #rebounds' do
-      subject do
-        stub_dribbble :get, '/shots/471756/rebounds', DribbbleAPI::ShotsSuccess
-        @shot.rebounds
-      end
-
-      it 'return a list of shots' do
-        expect(subject.first).to be_a described_class
       end
     end
   end
@@ -279,14 +105,14 @@ describe Dribbble::Shot do
       subject do
         stub_dribbble :get, '/shots/471756', DribbbleAPI::ShotSuccess
         stub_dribbble :put, '/shots/471756', DribbbleAPI::ShotUpdated
-        bucket = {
+        data = {
           name: 'Shot title',
           description: 'Shot description'
         }
-        described_class.update 'valid_token', 471_756, bucket
+        described_class.update 'valid_token', 471_756, data
       end
 
-      it 'update bucket' do
+      it 'update data' do
         expect(subject.title).to eq('Shot title')
       end
     end

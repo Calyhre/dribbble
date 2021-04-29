@@ -42,68 +42,12 @@ Some calls are through a client:
 client = Dribbble::Client.new(token)
 ```
 
-### Buckets
-
-##### Find a bucket
-
-```ruby
-bucket = Dribbble::Bucket.find(token, '2754')
-```
-
-##### Create a bucket
-
-```ruby
-bucket = Dribbble::Bucket.create(token, name: 'A new bucket', description: 'A description')
-```
-
-##### Update a bucket
-
-```ruby
-bucket.update name: 'An updated bucket name'
-```
-
-##### Delete a bucket
-
-```ruby
-bucket.delete
-```
-
-#### Bucket shots
-
-##### List bucket shots
-
-```ruby
-shots = bucket.shots
-```
-
-##### Add shot to a bucket
-
-```ruby
-bucket.add_shot(329335)
-# or
-bucket.add_shot(shot) # shot is a Dribbble::Shot
-```
-
-##### Remove shot from a bucket
-
-```ruby
-bucket.remove_shot(329335)
-# or
-bucket.remove_shot(shot) # shot is a Dribbble::Shot
-```
-
 ### Projects
 
 ##### Find a Projects
 
 ```ruby
-project = Dribbble::Project.find(token, 3)
-```
-
-#### Project shots
-
-```ruby
-shots = project.shots
+project = Dribbble::Project.find(token, 1234)
 ```
 
 ### Shots
@@ -148,118 +92,16 @@ shot.delete
 
 #### Shot attachments
 
-##### List attachments for a shot
-
-```ruby
-shot.attachments
-```
-
 ##### Create an attachment
 
 ```ruby
 shot.create_attachment(file: File.open('attachment_path'))
 ```
 
-##### Get a single attachment
-
-```ruby
-shot.find_attachment(206165)
-```
-
 ##### Delete an attachment
 
 ```ruby
 shot.delete_attachment(206165)
-```
-
-#### Shot buckets
-
-##### List buckets for a shot
-
-```ruby
-shot.buckets
-```
-
-#### Shot comments
-
-##### List comments for a shot
-
-```ruby
-shot.comments
-```
-
-##### Create a comment
-
-```ruby
-comment = shot.create_comment(body: 'A comment')
-```
-
-##### Get a single comment
-
-```ruby
-comment = shot.find_comment(1145736)
-```
-
-##### Update a comment
-
-```ruby
-comment = shot.update_comment(1145736, body: 'Comment body')
-```
-
-##### Delete a comment
-
-```ruby
-shot.delete_comment(1145736)
-```
-
-##### List likes for a comment
-
-```ruby
-comment.likes
-```
-
-##### Check if you like a comment
-
-```ruby
-comment.like?
-```
-
-##### Like a comment
-
-```ruby
-comment.like!
-```
-
-##### Unlike a comment
-
-```ruby
-comment.unlike!
-```
-
-#### Shot likes
-
-##### List the likes for a shot
-
-```ruby
-shot.likes
-```
-
-##### Check if you like a shot
-
-```ruby
-shot.like?
-```
-
-##### Like a shot
-
-```ruby
-shot.like!
-```
-
-##### Unlike a shot
-
-```ruby
-shot.unlike!
 ```
 
 #### Shot projects
@@ -270,137 +112,12 @@ shot.unlike!
 projects = shot.projects
 ```
 
-#### Shot rebounds
-
-##### List rebounds for a shot
-
-```ruby
-shots = shot.rebounds
-```
-
-### Teams
-
-Let's assume you have a team:
-
-```ruby
-user = Dribbble::User.find(token, 483195)
-team = user.teams.first
-```
-
-#### Team members
-
-##### List a team’s members
-
-```ruby
-users = team.members
-```
-
-#### Team shots
-
-##### List shots for a team
-
-```ruby
-shots = team.shots
-```
-
 ### Users
-
-##### Get a single user
-
-```ruby
-user = Dribbble::User.find(token, 483195)
-```
 
 ##### Get the authenticated user
 
 ```ruby
 user = client.user
-```
-
-#### User buckets
-
-##### List a user’s buckets
-
-```ruby
-user.buckets
-```
-
-##### List authenticated user’s buckets
-
-```ruby
-buckets = client.buckets
-```
-
-#### User followers
-
-##### List followers of a user
-
-```ruby
-users = user.followers
-```
-
-##### List followers of authenticated user
-
-```ruby
-users = client.followers
-```
-
-##### List users followed by a user
-
-```ruby
-users = user.following
-```
-
-##### List shots for users followed by a authenticated user
-
-```ruby
-shots = client.following_shots
-```
-
-##### Check if you are following a user
-
-```ruby
-user.following?
-```
-
-##### Check if one user is following another
-
-```ruby
-user.following?(483195)
-```
-
-##### Follow a user
-
-```ruby
-user.follow!
-```
-
-##### Unfollow a user
-
-```ruby
-user.unfollow!
-```
-
-#### User likes
-
-##### List shot likes for a user
-
-```ruby
-shots = user.likes
-```
-
-##### List shot likes for authenticated user
-
-```ruby
-shots = client.likes
-```
-
-#### User projects
-
-##### List a user’s projects
-
-```ruby
-projects = user.projects
 ```
 
 ##### List authenticated user’s projects
@@ -411,30 +128,10 @@ projects = client.projects
 
 #### User shots
 
-##### List shots for a user
-
-```ruby
-shots = user.shots
-```
-
 ##### List shots for authenticated user
 
 ```ruby
 shots = client.shots
-```
-
-#### User teams
-
-##### List a user’s teams
-
-```ruby
-teams = user.teams
-```
-
-##### List authenticated user’s teams
-
-```ruby
-teams = client.teams
 ```
 
 ### Pagination & parameters

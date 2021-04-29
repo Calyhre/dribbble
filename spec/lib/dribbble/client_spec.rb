@@ -49,41 +49,8 @@ describe Dribbble::Client do
 
       it 'return current user' do
         expect(subject).to be_a Dribbble::User
-        expect(subject.id).to eq(8_008_135)
+        expect(subject.id).to eq(1)
       end
-    end
-  end
-
-  describe 'on #buckets' do
-    subject do
-      stub_dribbble :get, '/user/buckets', DribbbleAPI::BucketsSuccess
-      @client.buckets
-    end
-
-    it 'return buckets' do
-      expect(subject.first).to be_a Dribbble::Bucket
-    end
-  end
-
-  describe 'on #followers' do
-    subject do
-      stub_dribbble :get, '/user/followers', DribbbleAPI::FollowersSuccess
-      @client.followers
-    end
-
-    it 'return users' do
-      expect(subject.first).to be_a Dribbble::User
-    end
-  end
-
-  describe 'on #likes' do
-    subject do
-      stub_dribbble :get, '/user/likes', DribbbleAPI::UserLikesSuccess
-      @client.likes
-    end
-
-    it 'return shots' do
-      expect(subject.first).to be_a Dribbble::Shot
     end
   end
 
@@ -106,28 +73,6 @@ describe Dribbble::Client do
 
     it 'return shots' do
       expect(subject.first).to be_a Dribbble::Shot
-    end
-  end
-
-  describe 'on #following_shots' do
-    subject do
-      stub_dribbble :get, '/user/following/shots', DribbbleAPI::ShotsSuccess
-      @client.following_shots
-    end
-
-    it 'return shots' do
-      expect(subject.first).to be_a Dribbble::Shot
-    end
-  end
-
-  describe 'on #teams' do
-    subject do
-      stub_dribbble :get, '/user/teams', DribbbleAPI::TeamsSuccess
-      @client.teams
-    end
-
-    it 'return teams' do
-      expect(subject.first).to be_a Dribbble::Team
     end
   end
 end
