@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Dribbble
   API_URI = ENV.fetch('DRIBBBLE_API_URI', 'https://api.dribbble.com/v2')
 end

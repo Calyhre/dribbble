@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 require 'sinatra/base'
 
 class String
   def underscore
-    self.gsub(/::/, '/').
-    gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').
-    gsub(/([a-z\d])([A-Z])/,'\1_\2').
-    tr("-", "_").
-    downcase
+    gsub(/::/, '/')
+      .gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2')
+      .gsub(/([a-z\d])([A-Z])/, '\1_\2')
+      .tr('-', '_')
+      .downcase
   end
 end
 
@@ -105,9 +107,9 @@ module DribbbleAPI
       headers response_headers
 
       {
-        message: "Validation failed.",
+        message: 'Validation failed.',
         errors: [
-          { attribute: "user", message: "reached the daily limit of 5 shots" }
+          { attribute: 'user', message: 'reached the daily limit of 5 shots' }
         ]
       }.to_json
     end
@@ -227,6 +229,9 @@ module DribbbleAPI
   end
 
   class ShotLikesSuccess < Found
+  end
+
+  class ShotsSuccess < Found
   end
 
   class TeamsSuccess < Found

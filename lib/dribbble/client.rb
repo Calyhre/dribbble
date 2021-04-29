@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'dribbble/base'
 require 'dribbble/shot'
 require 'dribbble/user'
@@ -16,7 +18,8 @@ module Dribbble
     def initialize(token = nil)
       token = token.is_a?(Hash) ? token[:token] : token
       @token = token
-      fail Dribbble::Error::MissingToken if @token.nil?
+      super(token, {})
+      raise Dribbble::Error::MissingToken if @token.nil?
     end
 
     # Get authenticated user's buckets

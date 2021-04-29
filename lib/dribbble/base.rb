@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'dribbble/utils'
 require 'dribbble/utils/has_children'
 
@@ -17,7 +19,7 @@ module Dribbble
       @dribbble_url = build_dribbble_url(@raw['id'].to_s, dribbble_url)
 
       @raw.each do |k, _v|
-        define_singleton_method(k) { @raw[k] } unless self.respond_to?(k)
+        define_singleton_method(k) { @raw[k] } unless respond_to?(k)
       end
     end
 

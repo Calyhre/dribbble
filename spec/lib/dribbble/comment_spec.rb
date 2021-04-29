@@ -1,17 +1,19 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 RAW_COMMENT = data_from_json 'comment_success.json'
 
 describe Dribbble::Comment do
   describe 'on instance' do
-    before :all do
-      @comment = Dribbble::Comment.new 'valid_token', RAW_COMMENT, '/shots/471756/comments'
+    before do
+      @comment = described_class.new 'valid_token', RAW_COMMENT, '/shots/471756/comments'
     end
 
     describe 'after initialization' do
       RAW_COMMENT.each do |field, value|
         it "respond to #{field}" do
-          expect(@comment.send field).to eq(value)
+          expect(@comment.send(field)).to eq(value)
         end
       end
     end

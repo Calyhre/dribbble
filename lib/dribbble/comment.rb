@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Dribbble
   class Comment < Dribbble::Base
     def self.available_fields
-      %i(body)
+      %i[body]
     end
 
     def likes
@@ -18,12 +20,12 @@ module Dribbble
 
     def like!
       res = html_post "#{dribbble_url}/like"
-      res.code == 201 ? true : false
+      res.code == 201
     end
 
     def unlike!
       res = html_delete "#{dribbble_url}/like"
-      res.code == 204 ? true : false
+      res.code == 204
     end
   end
 end

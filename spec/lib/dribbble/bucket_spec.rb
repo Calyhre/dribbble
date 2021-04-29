@@ -1,17 +1,19 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 RAW_BUCKET = data_from_json 'bucket_success.json'
 
 describe Dribbble::Bucket do
   describe 'on instance' do
-    before :all do
-      @bucket = Dribbble::Bucket.new 'valid_token', RAW_BUCKET
+    before do
+      @bucket = described_class.new 'valid_token', RAW_BUCKET
     end
 
     describe 'after initialization' do
       RAW_BUCKET.each do |field, value|
         it "respond to #{field}" do
-          expect(@bucket.send field).to eq(value)
+          expect(@bucket.send(field)).to eq(value)
         end
       end
     end
@@ -85,11 +87,11 @@ describe Dribbble::Bucket do
           name: 'Bucket title',
           description: 'Bucket description'
         }
-        Dribbble::Bucket.create 'valid_token', bucket
+        described_class.create 'valid_token', bucket
       end
 
       it 'create the shot' do
-        expect(subject).to be_a Dribbble::Bucket
+        expect(subject).to be_a described_class
       end
     end
 
@@ -101,7 +103,7 @@ describe Dribbble::Bucket do
           name: 'Bucket title',
           description: 'Bucket description'
         }
-        Dribbble::Bucket.update 'valid_token', 2754, bucket
+        described_class.update 'valid_token', 2754, bucket
       end
 
       it 'update bucket' do
@@ -113,7 +115,7 @@ describe Dribbble::Bucket do
       subject do
         stub_dribbble :get, '/buckets/2754', DribbbleAPI::BucketSuccess
         stub_dribbble :delete, '/buckets/2754', DribbbleAPI::BucketDeleted
-        Dribbble::Bucket.delete 'valid_token', 2754
+        described_class.delete 'valid_token', 2754
       end
 
       it 'return true' do
@@ -124,11 +126,11 @@ describe Dribbble::Bucket do
     describe 'on #find' do
       subject do
         stub_dribbble :get, '/buckets/2754', DribbbleAPI::BucketSuccess
-        Dribbble::Bucket.find 'valid_token', 2754
+        described_class.find 'valid_token', 2754
       end
 
       it 'return a bucket' do
-        expect(subject).to be_a Dribbble::Bucket
+        expect(subject).to be_a described_class
         expect(subject.id).to eq(2754)
       end
     end

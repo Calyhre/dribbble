@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'dribbble/utils/findable'
 
 module Dribbble
@@ -22,12 +24,12 @@ module Dribbble
 
     def follow!
       res = html_put "/users/#{id}/follow"
-      res.code == 204 ? true : false
+      res.code == 204
     end
 
     def unfollow!
       res = html_delete "/users/#{id}/follow"
-      res.code == 204 ? true : false
+      res.code == 204
     end
   end
 end

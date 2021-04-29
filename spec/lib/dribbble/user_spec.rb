@@ -1,17 +1,19 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 RAW_USER = data_from_json 'user_success.json'
 
 describe Dribbble::User do
   describe 'on instance' do
-    before :all do
-      @user = Dribbble::User.new 'valid_token', RAW_USER
+    before do
+      @user = described_class.new 'valid_token', RAW_USER
     end
 
     describe 'after initialization' do
       RAW_USER.each do |field, value|
         it "respond to #{field}" do
-          expect(@user.send field).to eq(value)
+          expect(@user.send(field)).to eq(value)
         end
       end
     end
@@ -36,7 +38,7 @@ describe Dribbble::User do
 
       it 'responds with users' do
         expect(subject.size).to eq 1
-        expect(subject.first).to be_a Dribbble::User
+        expect(subject.first).to be_a described_class
         expect(subject.first.location).to eq 'Salem, MA'
       end
     end
@@ -49,7 +51,7 @@ describe Dribbble::User do
 
       it 'responds with users' do
         expect(subject.size).to eq 1
-        expect(subject.first).to be_a Dribbble::User
+        expect(subject.first).to be_a described_class
         expect(subject.first.name).to eq('Dan Cederholm')
       end
     end
@@ -180,11 +182,11 @@ describe Dribbble::User do
     describe 'on #find' do
       subject do
         stub_dribbble :get, '/users/483195', DribbbleAPI::UserSuccess
-        Dribbble::User.find 'valid_token', 483_195
+        described_class.find 'valid_token', 483_195
       end
 
       it 'return a user' do
-        expect(subject).to be_a Dribbble::User
+        expect(subject).to be_a described_class
         expect(subject.id).to eq(483_195)
       end
     end

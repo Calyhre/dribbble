@@ -1,17 +1,19 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 RAW_TEAM = data_from_json 'team_success.json'
 
 describe Dribbble::Team do
   describe 'on instance' do
-    before :all do
-      @team = Dribbble::Team.new 'valid_token', RAW_TEAM, '/teams/39'
+    before do
+      @team = described_class.new 'valid_token', RAW_TEAM, '/teams/39'
     end
 
     describe 'after initialization' do
       RAW_TEAM.each do |field, value|
         it "respond to #{field}" do
-          expect(@team.send field).to eq(value)
+          expect(@team.send(field)).to eq(value)
         end
       end
     end

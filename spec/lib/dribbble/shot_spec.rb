@@ -1,17 +1,19 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 RAW_SHOT = data_from_json 'shot_success.json'
 
 describe Dribbble::Shot do
   describe 'on instance' do
-    before :all do
-      @shot = Dribbble::Shot.new 'valid_token', RAW_SHOT
+    before do
+      @shot = described_class.new 'valid_token', RAW_SHOT
     end
 
     describe 'after initialization' do
       RAW_SHOT.each do |field, value|
         it "respond to #{field}" do
-          expect(@shot.send field).to eq(value)
+          expect(@shot.send(field)).to eq(value)
         end
       end
     end
@@ -152,12 +154,12 @@ describe Dribbble::Shot do
       describe 'update' do
         subject do
           stub_dribbble :put, '/shots/471756/comments/1145736', DribbbleAPI::CommentUpdated
-          @shot.update_comment 1_145_736, body: "New body"
+          @shot.update_comment 1_145_736, body: 'New body'
         end
 
         it 'return a comment' do
           expect(subject).to be_a Dribbble::Comment
-          expect(subject.body).to eq("New body")
+          expect(subject.body).to eq('New body')
         end
       end
 
@@ -249,7 +251,7 @@ describe Dribbble::Shot do
       end
 
       it 'return a list of shots' do
-        expect(subject.first).to be_a Dribbble::Shot
+        expect(subject.first).to be_a described_class
       end
     end
   end
@@ -262,9 +264,9 @@ describe Dribbble::Shot do
           title: 'Shot title',
           desciption: 'Shot description',
           image: File.new("#{Dir.pwd}/spec/support/fixtures/image.jpg", 'rb'),
-          tags: %w(tag1 tag2)
+          tags: %w[tag1 tag2]
         }
-        Dribbble::Shot.create 'valid_token', shot
+        described_class.create 'valid_token', shot
       end
 
       it 'create the shot' do
@@ -281,7 +283,7 @@ describe Dribbble::Shot do
           name: 'Shot title',
           description: 'Shot description'
         }
-        Dribbble::Shot.update 'valid_token', 471_756, bucket
+        described_class.update 'valid_token', 471_756, bucket
       end
 
       it 'update bucket' do
@@ -293,7 +295,7 @@ describe Dribbble::Shot do
       subject do
         stub_dribbble :get, '/shots/471756', DribbbleAPI::ShotSuccess
         stub_dribbble :delete, '/shots/471756', DribbbleAPI::ShotDeleted
-        Dribbble::Shot.delete 'valid_token', 471_756
+        described_class.delete 'valid_token', 471_756
       end
 
       it 'return true' do
@@ -304,11 +306,11 @@ describe Dribbble::Shot do
     describe 'on #find' do
       subject do
         stub_dribbble :get, '/shots/471756', DribbbleAPI::ShotSuccess
-        Dribbble::Shot.find 'valid_token', 471_756
+        described_class.find 'valid_token', 471_756
       end
 
       it 'return a shot' do
-        expect(subject).to be_a Dribbble::Shot
+        expect(subject).to be_a described_class
         expect(subject.id).to eq(471_756)
       end
     end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'uri'
 
 module Dribbble
@@ -5,14 +7,14 @@ module Dribbble
     DEFAULT_ATTRIBUTES = {
       page: 1,
       per_page: 100
-    }
+    }.freeze
 
     def class_name
-      @_class_name ||= self.is_a?(Class) ? name.split('::').last.downcase : self.class.name.split('::').last.downcase
+      @class_name ||= is_a?(Class) ? name.split('::').last.downcase : self.class.name.split('::').last.downcase
     end
 
     def pluralized_class_name
-      @_pluralized_class_name ||= "#{class_name}s"
+      @pluralized_class_name ||= "#{class_name}s"
     end
 
     def full_url(path, attrs = {})

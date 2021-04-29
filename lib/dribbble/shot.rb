@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'dribbble/utils/findable'
 require 'dribbble/utils/creatable'
 require 'dribbble/utils/updatable'
@@ -17,7 +19,7 @@ module Dribbble
     has_many :rebounds, as: Dribbble::Shot
 
     def self.available_fields
-      %i(title image description tags team_id rebound_source_id low_profile)
+      %i[title image description tags team_id rebound_source_id low_profile]
     end
 
     def self.after_create(res)
@@ -33,12 +35,12 @@ module Dribbble
 
     def like!
       res = html_post "/shots/#{id}/like"
-      res.code == 201 ? true : false
+      res.code == 201
     end
 
     def unlike!
       res = html_delete "/shots/#{id}/like"
-      res.code == 204 ? true : false
+      res.code == 204
     end
 
     def rebounds(attrs = {})

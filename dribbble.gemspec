@@ -1,4 +1,6 @@
-require File.expand_path('../lib/dribbble/version', __FILE__)
+# frozen_string_literal: true
+
+require File.expand_path('lib/dribbble/version', __dir__)
 
 Gem::Specification.new do |s|
   s.name         = 'dribbble'
@@ -17,9 +19,9 @@ Gem::Specification.new do |s|
   s.required_ruby_version = ['>= 2.2.0', '< 3.0']
   s.add_runtime_dependency 'rest-client', '~> 2.0'
 
+  s.add_development_dependency 'guard-rspec', '~> 4.3'
   s.add_development_dependency 'rake', '~> 10.3'
   s.add_development_dependency 'rspec', '~> 2.14'
-  s.add_development_dependency 'guard-rspec', '~> 4.3'
   s.add_development_dependency 'sinatra', '~> 1.4'
   s.add_development_dependency 'webmock', '~> 2.3'
 end

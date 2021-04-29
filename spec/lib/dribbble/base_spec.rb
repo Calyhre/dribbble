@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
-describe Dribbble::Client do
-  before :all do
-    @base = Dribbble::Base.new 'valid_token', {}
+describe Dribbble::Base do
+  before do
+    @base = described_class.new 'valid_token', {}
   end
 
   describe 'on #full_url_with_default_params' do
