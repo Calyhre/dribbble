@@ -5,7 +5,7 @@ module Dribbble
     module Deletable
       def delete
         res = html_delete "/#{self.class.api_endpoint}/#{id}"
-        res.code == 204
+        res.code == 204 || res.code == 200
       end
 
       module ClassMethods

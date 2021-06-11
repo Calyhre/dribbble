@@ -45,13 +45,16 @@ describe Dribbble::Project do
       it 'create the project' do
         expect(subject).to be_truthy
         expect(subject.id).to eq(3)
+        expect(subject.name).to eq('Project title')
+        expect(subject.description).to eq('Project description')
       end
     end
 
-    skip 'on #delete' do
+    describe 'on #delete' do
       subject do
-        stub_dribbble :delete, '/projects/471756', DribbbleAPI::ProjectsDeleted
-        described_class.delete 'valid_token', 471_756
+        stub_dribbble :get, '/projects/3', DribbbleAPI::ProjectSuccess
+        stub_dribbble :delete, '/projects/3', DribbbleAPI::ProjectsDeleted
+        described_class.delete 'valid_token', 3
       end
 
       it 'return true' do
@@ -59,18 +62,19 @@ describe Dribbble::Project do
       end
     end
 
-    skip 'on #update' do
+    describe 'on #update' do
       subject do
-        stub_dribbble :put, '/projects/471756', DribbbleAPI::ProjectsUpdated
+        stub_dribbble :get, '/projects/3', DribbbleAPI::ProjectSuccess
+        stub_dribbble :put, '/projects/3', DribbbleAPI::ProjectsUpdated
         data = {
           name: 'Project title',
           description: 'Project description'
         }
-        described_class.update 'valid_token', 471_756, data
+        described_class.update 'valid_token', 3, data
       end
 
       it 'update data' do
-        expect(subject.title).to eq('Project title')
+        expect(subject.name).to eq('Project title')
       end
     end
   end
