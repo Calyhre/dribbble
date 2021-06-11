@@ -50,6 +50,18 @@ client = Dribbble::Client.new(token)
 project = Dribbble::Project.find(token, 1234)
 ```
 
+##### Update a Project
+
+```ruby
+project.update(name: 'Some project', description: 'Some description');
+```
+
+##### Delete a Project
+
+```ruby
+project.delete
+```
+
 ### Shots
 
 ##### Find a shot
