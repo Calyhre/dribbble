@@ -1,6 +1,6 @@
 # Dribbble API wrapper Gem
 
-[![Gem Version]][on rubygems] [![Build Status]][on travis]
+[![Gem Version]][on rubygems]
 
 Calyhre/dribbble is an unofficial API wrapper ruby gem for [Dribbble.com's API].
 
@@ -12,7 +12,7 @@ Calyhre/dribbble is an unofficial API wrapper ruby gem for [Dribbble.com's API].
 
 ### Requirements
 
-* Ruby `~> 2.2.5`, use `v1.0.4` for previous Ruby versions.
+- Ruby `~> 2.5`, use `v1.2.0` for previous Ruby versions.
 
 ### In a Gemfile
 
@@ -174,7 +174,6 @@ Released under the MIT License. See the [LICENSE] file for further details.
 [gem version]: https://badge.fury.io/rb/dribbble.svg
 [build status]: https://travis-ci.org/Calyhre/dribbble.svg?branch=master
 [on rubygems]: http://rubygems.org/gems/dribbble
-[on travis]: https://travis-ci.org/Calyhre/dribbble
 [dribbble.com's api]: http://developer.dribbble.com/
 [but, what is dribbble?]: https://dribbble.com/about
 [license]: LICENSE.md
