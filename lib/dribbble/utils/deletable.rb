@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module Dribbble
   module Utils
     module Deletable
       def delete
         res = html_delete "/#{self.class.api_endpoint}/#{id}"
-        res.code == 204 ? true : false
+        res.code == 204 || res.code == 200
       end
 
       module ClassMethods

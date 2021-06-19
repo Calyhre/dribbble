@@ -1,25 +1,36 @@
 {
-  "id" : 8008135,
-  "name" : "Charley D.",
-  "username" : "Calyhre",
-  "html_url" : "https://dribbble.com/Calyhre",
-  "avatar_url" : "https://d13yacurqjgara.cloudfront.net/users/483195/avatars/normal/493064787.png?1390292526",
-  "bio" : "",
-  "location" : null,
-  "links" : {},
-  "followers_count" : 1,
-  "followings_count" : 4,
-  "likes_count" : 4,
-  "shots_count" : 0,
-  "type" : "Player",
-  "pro" : false,
-  "buckets_url" : "https://api.dribbble.com/v2/users/483195/buckets",
-  "followers_url" : "https://api.dribbble.com/v2/users/483195/followers",
-  "following_url" : "https://api.dribbble.com/v2/users/483195/following",
-  "likes_url" : "https://api.dribbble.com/v2/users/483195/likes",
-  "projects_url" : "https://api.dribbble.com/v2/users/483195/projects",
-  "shots_url" : "https://api.dribbble.com/v2/users/483195/shots",
-  "teams_url" : "https://api.dribbble.com/v2/users/483195/teams",
-  "created_at" : "2014-01-21T08:22:06Z",
-  "updated_at" : "2014-09-29T19:39:00Z"
+  "id" : 1,
+  "name" : "Dan Cederholm",
+  "login" : "simplebits",
+  "html_url" : "https://dribbble.com/simplebits",
+  "avatar_url" : "https://d13yacurqjgara.cloudfront.net/users/1/avatars/normal/dc.jpg?1371679243",
+  "bio" : "Co-founder &amp; designer of <a href=\"https://dribbble.com/dribbble\">@Dribbble</a>. Principal of SimpleBits. Aspiring clawhammer banjoist.",
+  "location" : "Salem, MA",
+  "links" : {
+    "web" : "http://simplebits.com",
+    "twitter" : "https://twitter.com/simplebits"
+  },
+  "can_upload_shot" : true,
+  "pro" : true,
+  "followers_count" : 66557,
+  "created_at" : "2009-07-08T02:51:22Z",
+  "type" : "User",
+  "teams" : [
+    {
+      "id" : 39,
+      "name" : "Dribbble",
+      "login" : "dribbble",
+      "html_url" : "https://dribbble.com/dribbble",
+      "avatar_url" : "https://d13yacurqjgara.cloudfront.net/users/39/avatars/normal/apple-flat-precomposed.png?1388527574",
+      "bio" : "Show and tell for designers. This is Dribbble on Dribbble.",
+      "location" : "Salem, MA",
+      "links" : {
+        "web" : "http://dribbble.com",
+        "twitter" : "https://twitter.com/dribbble"
+      },
+      "type" : "Team",
+      "created_at" : "2009-08-18T18:34:31Z",
+      "updated_at" : "2014-02-14T22:32:11Z"
+    }
+  ]
 }

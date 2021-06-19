@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 require 'sinatra/base'
 
 class String
   def underscore
-    self.gsub(/::/, '/').
-    gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').
-    gsub(/([a-z\d])([A-Z])/,'\1_\2').
-    tr("-", "_").
-    downcase
+    gsub(/::/, '/')
+      .gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2')
+      .gsub(/([a-z\d])([A-Z])/, '\1_\2')
+      .tr('-', '_')
+      .downcase
   end
 end
 
@@ -105,9 +107,9 @@ module DribbbleAPI
       headers response_headers
 
       {
-        message: "Validation failed.",
+        message: 'Validation failed.',
         errors: [
-          { attribute: "user", message: "reached the daily limit of 5 shots" }
+          { attribute: 'user', message: 'reached the daily limit of 5 shots' }
         ]
       }.to_json
     end
@@ -122,80 +124,25 @@ module DribbbleAPI
   class AttachmentDeleted < Deleted
   end
 
-  class CommentsSuccess < Found
-  end
-
-  class CommentSuccess < Found
-  end
-
-  class CommentCreated < Created
-  end
-
-  class CommentUpdated < Updated
-  end
-
-  class CommentDeleted < Deleted
-  end
-
-  class CommentLikesSuccess < Found
-  end
-
-  class CommentLikeSuccess < Found
-  end
-
-  class CommentLikeNotFound < NotFound
-  end
-
-  class CommentLikeCreated < Created
-  end
-
-  class CommentLikeDeleted < Deleted
-  end
-
   class CurrentUserSuccess < Found
-  end
-
-  class BucketSuccess < Found
-  end
-
-  class BucketCreated < Created
-  end
-
-  class BucketUpdated < Updated
-  end
-
-  class BucketDeleted < Deleted
-  end
-
-  class BucketsSuccess < Found
-  end
-
-  class FollowersSuccess < Found
-  end
-
-  class FollowingSuccess < Found
-  end
-
-  class UserFollowSuccess < Found
-  end
-
-  class UserFollowNotFound < NotFound
-  end
-
-  class UserFollowCreated < NoContent
-  end
-
-  class UserFollowDeleted < Deleted
-  end
-
-  class UserLikesSuccess < Found
   end
 
   class ProjectSuccess < Found
   end
 
+  # TODO: pending
   class ProjectsSuccess < Found
   end
+
+  class ProjectsAccepted < Found
+  end
+
+  class ProjectsDeleted < Found
+  end
+
+  class ProjectsUpdated < Found
+  end
+  # END
 
   class ShotUpdated < Updated
   end
@@ -214,22 +161,7 @@ module DribbbleAPI
     end
   end
 
-  class ShotLikeSuccess < Found
-  end
-
-  class ShotLikeNotFound < NotFound
-  end
-
-  class ShotLikeCreated < Created
-  end
-
-  class ShotLikeDeleted < Deleted
-  end
-
-  class ShotLikesSuccess < Found
-  end
-
-  class TeamsSuccess < Found
+  class ShotsSuccess < Found
   end
 
   class UserSuccess < Found

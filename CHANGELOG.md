@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.0.0] - 2021-04-29
+### Added
+- Added rubocop gems
+### Changed
+- Removed any specs that did not make sense
+- Removed any dribbble endpoints that are not supported
+### Fixed
+- All of the specs
+
 
 ## [1.2.0] - 2017-03-01
 #### Changed
