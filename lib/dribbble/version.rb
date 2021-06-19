@@ -2,5 +2,5 @@
 
 # Dribbble Version
 module Dribbble
-  VERSION = '2.0.0'
+  VERSION = '2.0.1'
 end
