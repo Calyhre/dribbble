@@ -9,10 +9,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [2.0.0] - 2021-04-29
 ### Added
-- Added rubocop gems
+- Added rubocop gems in development
 ### Changed
 - Removed any specs that did not make sense
-- Removed any dribbble endpoints that are not supported
+- Removed any Dribbble endpoints that are not supported
+- Dropped support for Ruby < 2.5
 ### Fixed
 - All of the specs
 
